@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    // NOTA: Amb això ara els arxius d'environment funcionen dins a l'api (ex: "process.env.dev")
+    // NOTA: Necessari pq els arxius d'environment siguin accessibles des de l'api (ex: "process.env.dev")
     ConfigModule.forRoot({
       isGlobal: true,
     }),

@@ -1,0 +1,30 @@
+name: Deploy PROD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/api.Dockerfile -t derivalia:prod .
+
+      - name: Deploy to PROD server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          script: |
+            docker stop api-prod || true
+            docker rm api-prod || true
+            docker run -d \
+              --name api-prod \
+              --env-file infra/env/prod.env \
+              -p 3000:3000 \
+              derivalia:prod

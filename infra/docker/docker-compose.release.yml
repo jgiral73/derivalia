@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api-release
+    build:
+      context: ../..
+      dockerfile: infra/docker/api.Dockerfile
+    image: derivalia:release
+    env_file:
+      - ../env/release.env
+    ports:
+      - "3002:3000"
+    restart: unless-stopped

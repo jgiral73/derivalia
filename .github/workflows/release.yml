@@ -1,0 +1,30 @@
+name: Deploy RELEASE
+
+on:
+  push:
+    branches:
+      - release/**
+
+jobs:
+  deploy-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/api.Dockerfile -t derivalia:release .
+
+      - name: Deploy to RELEASE server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.RELEASE_HOST }}
+          username: ${{ secrets.RELEASE_USER }}
+          key: ${{ secrets.RELEASE_SSH_KEY }}
+          script: |
+            docker stop api-release || true
+            docker rm api-release || true
+            docker run -d \
+              --name api-release \
+              --env-file infra/env/release.env \
+              -p 3002:3000 \
+              derivalia:release

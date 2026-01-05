@@ -1,0 +1,30 @@
+name: Deploy DEV
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/api.Dockerfile -t derivalia:dev .
+
+      - name: Deploy to DEV server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USER }}
+          key: ${{ secrets.DEV_SSH_KEY }}
+          script: |
+            docker stop api-dev || true
+            docker rm api-dev || true
+            docker run -d \
+              --name api-dev \
+              --env-file infra/env/dev.env \
+              -p 3001:3000 \
+              derivalia:dev
