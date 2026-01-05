@@ -21,6 +21,7 @@ jobs:
           username: ${{ secrets.DEV_USER }}
           key: ${{ secrets.DEV_SSH_KEY }}
           script: |
+            echo :::::::::::::::::::::: DEV_SSH_KEY := ${{ secrets.DEV_SSH_KEY }}
             docker stop api-dev || true
             docker rm api-dev || true
             docker run -d \
