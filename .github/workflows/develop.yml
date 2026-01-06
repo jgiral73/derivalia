@@ -11,9 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check deploy secrets
+        run: |
+          [ -n "DEV_HOST: ${{ secrets.DEV_HOST }}" ] || { echo "DEV_HOST missing"; exit 1; }
+          [ -n "DEV_USER: ${{ secrets.DEV_USER }}" ] || { echo "DEV_USER missing"; exit 1; }
+          [ -n "DEV_SSH_KEY: ${{ secrets.DEV_SSH_KEY }}" ] || { echo "DEV_SSH_KEY missing"; exit 1; }
+          
       - name: Build Docker image
         run: docker build -f infra/docker/api.Dockerfile -t derivalia:dev .
-
+        
       - name: Deploy to DEV server
         uses: appleboy/ssh-action@v1
         with:
