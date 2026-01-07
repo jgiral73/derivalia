@@ -1,16 +1,26 @@
 # Guia d’aterratge al projecte
 
+[Què és aquest projecte (en una frase)](#1-què-és-aquest-projecte-en-una-frase) |
+[Com està pensat aquest repositori](#2-com-està-pensat-aquest-repositori) |
+[Com llegir la documentació (ordre mínim recomanat)](#3-com-llegir-la-documentació-ordre-mínim-recomanat) |
+[Com pensar el sistema (model mental)](#4-com-pensar-el-sistema-model-mental) |
+[Què pots fer segons el teu objectiu](#5-què-pots-fer-segons-el-teu-objectiu) |
+[Què NO és aquest projecte](#6-què-no-és-aquest-projecte) |
+[Regla d’or](#7-regla-dor) |
+
+<br />
+
 > Aquest document és el **punt d’entrada oficial** al projecte, pensat tant per a persones com per a IA. Si només llegeixes un fitxer abans de començar, que sigui aquest.
 
 <br />
 
-## 1. Què és aquest projecte (en una frase)
+## [1. Què és aquest projecte (en una frase)](#)
 
 Una plataforma modular orientada a professionals de la salut i el benestar que permet **gestionar relacions clíniques complexes** (pacients, col·laboracions entre professionals, agenda, facturació, consentiments) mitjançant un **model de domini explícit**, evolutiu i governant la UX.
 
 <br />
 
-## 2. Com està pensat aquest repositori
+## [2. Com està pensat aquest repositori](#)
 
 Aquest no és un repositori centrat en pantalles ni en CRUDs, sinó en **domini**.
 
@@ -25,26 +35,26 @@ Tot el codi, decisions i UX deriven d’aquests principis.
 
 <br />
 
-## 3. Com llegir la documentació (ordre mínim recomanat)
+## [3. Com llegir la documentació (ordre mínim recomanat)](#)
 
 Si ets humà o IA i vols entendre el projecte sense perdre matisos:
 
 1. `guia-aterratge.md` ← (ets aquí)
-2. `product-vision.md`
-3. `glossary.md`
-4. `bounded-contexts.md`
-5. `core-domain-bc.md`
-6. `api-backend.md`
-7. `actor-lifecycles.md`
-8. `permissions-and-ux.md`
-9. `use-cases-mvp.md`
-10. `architecture-decisions.md`
+1. `product-vision.md`
+1. `glossary.md`
+1. `core-domain-bc.md`
+1. `bounded-contexts.md`
+1. `api-backend.md`
+1. `actor-lifecycles.md`
+1. `permissions-and-ux.md`
+1. `use-cases-mvp.md`
+1. `architecture-decisions.md`
 
 ⚠️ **No saltis el glossari**: molts conceptes tenen significat de domini específic.
 
 <br />
 
-## 4. Com pensar el sistema (model mental)
+## [4. Com pensar el sistema (model mental)](#)
 
 ### 4.1 Actors no són usuaris
 
@@ -92,7 +102,7 @@ Els estats expliquen el negoci i governen la UX.
 
 <br />
 
-## 5. Què pots fer segons el teu objectiu
+## [5. Què pots fer segons el teu objectiu](#)
 
 ### 🔧 Vull programar backend
 
@@ -125,7 +135,7 @@ Els estats expliquen el negoci i governen la UX.
 
 <br />
 
-## 6. Què NO és aquest projecte
+## [6. Què NO és aquest projecte](#)
 
 * ❌ No és un simple gestor de cites
 * ❌ No és un CRM mèdic clàssic
@@ -137,7 +147,7 @@ Per més informació, llegeix `no-goals.md`
 
 <br />
 
-## 7. Regla d’or
+## [7. Regla d’or](#)
 
 > Si una decisió de codi, UX o arquitectura **no es pot explicar amb el domini**, probablement és incorrecta.
 

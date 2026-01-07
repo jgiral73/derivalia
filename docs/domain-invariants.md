@@ -2,13 +2,13 @@
 # Domain Invariants
 
 
-[Invariants fonamentals (core-domain)](#1-invariants-fonamentals-core-domain) | 
-[Invariants sobre col·laboracions](#2-invariants-sobre-collaboracions) | 
-[Invariants sobre actors i estats](#3-invariants-sobre-actors-i-estats) | 
-[Invariants temporals](#4-invariants-temporals) | 
-[Invariants d’arquitectura (derivades del domini)](#5-invariants-darquitectura-derivades-del-domini) | 
-[Com utilitzar aquest document](#6-com-utilitzar-aquest-document) | 
-[Prioritat documental](#7-prioritat-documental) | 
+[Fonamentals (core-domain)](#invariants-fonamentals-core-domain) | 
+[Col·laboracions](#invariants-sobre-collaboracions) | 
+[Actors i estats](#invariants-sobre-actors-i-estats) | 
+[Temporals](#invariants-temporals) | 
+[Arquitectura (derivades del domini)](#invariants-darquitectura-derivades-del-domini) | 
+[Com utilitzar aquest document](#com-utilitzar-aquest-document) | 
+[Prioritat documental](#prioritat-documental) | 
 
 <br />
 
@@ -18,7 +18,7 @@ Aquestes invariants són **independents de tecnologia, UX o implementació** i h
 
 <br />
 
-## [1. Invariants fonamentals (core-domain)](#)
+## [Invariants fonamentals (core-domain)](#)
 
 ### I-01 · No existeix relació clínica sense consentiment
 
@@ -64,7 +64,7 @@ ha de ser:
 
 <br />
 
-## [2. Invariants sobre col·laboracions](#)
+## [Invariants sobre col·laboracions](#)
 
 ### I-05 · No hi ha col·laboració sense pacient
 
@@ -95,7 +95,7 @@ Una col·laboració només és activa quan:
 
 <br />
 
-## [3. Invariants sobre actors i estats](#)
+## [Invariants sobre actors i estats](#)
 
 ### I-08 · Els estats governen capacitats
 
@@ -115,7 +115,7 @@ Cap actor pot executar una acció:
 
 <br />
 
-## [4. Invariants temporals](#)
+## [Invariants temporals](#)
 
 ### I-10 · El temps importa
 
@@ -124,7 +124,7 @@ Cap actor pot executar una acció:
 
 <br />
 
-## [5. Invariants d’arquitectura (derivades del domini)](#)
+## [Invariants d’arquitectura (derivades del domini)](#)
 
 ### I-11 · El domini no depèn d’infraestructura
 
@@ -140,7 +140,7 @@ Cap actor pot executar una acció:
 
 <br />
 
-## [6. Com utilitzar aquest document](#)
+## [Com utilitzar aquest document](#)
 
 Abans de:
 
@@ -156,7 +156,7 @@ Si sí → **aturar i redissenyar**.
 
 <br />
 
-## [7. Prioritat documental](#)
+## [Prioritat documental](#)
 
 En cas de conflicte:
 

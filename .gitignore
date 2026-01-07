@@ -2,7 +2,7 @@
 dist
 node_modules
 build
-logo/proves
-logo/resources
+assets/logo/proves
+assets/logo/resources
 infra/env
 domini + hosting

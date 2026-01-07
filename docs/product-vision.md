@@ -1,13 +1,13 @@
 # Product Vision
 
-[Problema que resol el producte](#2-problema-que-resol-el-producte) |
-[Qui serveix el producte (actors)](#3-qui-serveix-el-producte-actors) |
-[Principis de producte (no negociables)](#4-principis-de-producte-no-negociables) |
-[Què ÉS el MVP](#5-què-és-el-mvp) |
-[Què NO és el producte (encara)](#6-què-no-és-el-producte-encara) |
-[Relació amb la resta de documents](#7-relació-amb-la-resta-de-documents) |
-[Visió a llarg termini (sense compromís d’abast)](#8-visió-a-llarg-termini-sense-compromís-dabast) |
-[Frase resum (per humans i IA)](#9-frase-resum-per-humans-i-ia) |
+[Problema que resol el producte](#1-problema-que-resol-el-producte) |
+[Qui serveix el producte (actors)](#2-qui-serveix-el-producte-actors) |
+[Principis de producte (no negociables)](#3-principis-de-producte-no-negociables) |
+[Què ÉS el MVP](#4-què-és-el-mvp) |
+[Què NO és el producte (encara)](#5-què-no-és-el-producte-encara) |
+[Relació amb la resta de documents](#6-relació-amb-la-resta-de-documents) |
+[Visió a llarg termini (sense compromís d’abast)](#7-visió-a-llarg-termini-sense-compromís-dabast) |
+[Frase resum (per humans i IA)](#8-frase-resum-per-humans-i-ia) |
 
 <br />
 

@@ -1,10 +1,23 @@
 # Core Domain – Relacions clíniques i col·laboratives
 
-> Aquest document defineix **què és essencial i no negociable** en el negoci. Si només un Bounded Context pogués existir, seria aquest.
+[Què és realment el core-domain](#1-què-és-realment-el-core-domain) |
+[Bounded Contexts prioritaris](#2-bounded-contexts-prioritaris) |
+[Actors essencials del model](#3-actors-essencials-del-model) |
+[Relacions com a primera classe](#4-relacions-com-a-primera-classe) |
+[Consent / Conformitat (nucli absolut)](#5-consent-conformitat-nucli-absolut) |
+[Col·laboració professional (core-domain pur)](#6-col·laboració-professional-core-domain-pur) |
+[Onboarding progressiu com a conseqüència del domini](#7-onboarding-progressiu-com-a-conseqüència-del-domini) |
+[Regles no negociables del core-domain](#8-regles-no-negociables-del-core-domain) |
+[Com protegir el core-domain](#9-com-protegir-el-core-domain) |
+[Prioritat documental](#10-prioritat-documental) |
 
 <br />
 
-## 1. Què és realment el core-domain
+Aquest document defineix **què és essencial i no negociable** en el negoci. Si només un Bounded Context pogués existir, seria aquest.
+
+<br />
+
+## [1. Què és realment el core-domain](#)
 
 El core-domain **NO** és:
 
@@ -21,7 +34,7 @@ Tot la resta (agenda, billing, UX, permisos) existeix **per servir aquest nucli*
 
 <br />
 
-## 2. Bounded Contexts prioritaris
+## [2. Bounded Contexts prioritaris](#)
 
 El core-domain travessa principalment aquests BCs (en ordre de prioritat):
 
@@ -34,7 +47,7 @@ Scheduling, Billing, Documents i Search **no són core**, sinó *supporting / ge
 
 <br />
 
-## 3. Actors essencials del model
+## [3. Actors essencials del model](#)
 
 ### 3.1 Professional
 
@@ -78,7 +91,7 @@ El sistema mai pot assumir control sobre el pacient sense consentiment explícit
 
 <br />
 
-## 4. Relacions com a primera classe
+## [4. Relacions com a primera classe](#)
 
 ### 4.1 Relació professional–pacient
 
@@ -116,7 +129,7 @@ Això permet:
 
 <br />
 
-## 5. Consent / Conformitat (nucli absolut)
+## [5. Consent / Conformitat (nucli absolut)](#)
 
 Sense consentiment **no existeix relació legítima**.
 
@@ -148,7 +161,7 @@ La **conformitat** és la materialització formal del consentiment:
 
 <br />
 
-## 6. Col·laboració professional (core-domain pur)
+## [6. Col·laboració professional (core-domain pur)](#)
 
 La col·laboració:
 
@@ -162,7 +175,7 @@ No és simètrica:
 
 <br />
 
-## 7. Onboarding progressiu com a conseqüència del domini
+## [7. Onboarding progressiu com a conseqüència del domini](#)
 
 L’onboarding no és una feature d’UX, sinó una conseqüència directa del core-domain.
 
@@ -174,7 +187,7 @@ Actors poden:
 
 <br />
 
-## 8. Regles no negociables del core-domain
+## [8. Regles no negociables del core-domain](#)
 
 1. Cap relació sense consentiment
 2. Cap consentiment fora de context
@@ -184,7 +197,7 @@ Actors poden:
 
 <br />
 
-## 9. Com protegir el core-domain
+## [9. Com protegir el core-domain](#)
 
 * El core-domain **no depèn** de UI, ORM ni framework
 * Qualsevol canvi ha de justificar-se aquí
@@ -192,7 +205,7 @@ Actors poden:
 
 <br />
 
-## 10. Prioritat documental
+## [10. Prioritat documental](#)
 
 En cas de conflicte:
 
