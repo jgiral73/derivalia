@@ -27,6 +27,12 @@ You MUST read and respect the following files before writing code:
 - docs/use-cases-mvp.md
 - docs/architecture-decisions.md
 
+More detailed info:
+
+- docs/domain-foundation/planificació/pas-a-pas/01 - Identity BC.md
+- docs/domain-foundation/bounded-contexts/indentity - Identity & Access Management.md
+- docs/domain-foundation/arquitectura/Identity & Auth/*.md
+
 ────────────────────────────────────────
 BOUNDARY OF THIS BC
 ────────────────────────────────────────
