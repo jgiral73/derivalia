@@ -19,7 +19,7 @@ jobs:
           
       - name: Build Docker image
         run: docker build -f infra/docker/api.Dockerfile -t derivalia:dev .
-
+        
       - name: Deploy to DEV server
         uses: appleboy/ssh-action@v1
         with:

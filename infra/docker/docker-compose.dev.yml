@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  > docker compose --env-file infra/env/dev.env -f infra/docker/docker-compose.dev.yml up --build
+# ------------------------------------------------------------------------------
+
 version: "3.9"
 
 services:
@@ -12,3 +16,15 @@ services:
     ports:
       - "3001:3000"
     restart: unless-stopped
+    develop:
+      watch:
+        - path: ./apps/api/package.json
+          action: rebuild
+        - path: ./apps/api
+          target: /usr/src/apps/api
+          action: sync
+    # volumes:
+    #   - api:/data/api
+
+# volumes:
+#   api:
