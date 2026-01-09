@@ -1,4 +1,4 @@
-import { DomainEvent } from './DomainEvent';
+import { DomainEvent } from 'src/shared';
 
 export class RoleAssigned implements DomainEvent {
   readonly eventName = 'RoleAssigned';

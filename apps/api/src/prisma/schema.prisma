@@ -1,0 +1,30 @@
+model User {
+  id            String   @id
+  email         String   @unique
+  passwordHash  String
+  createdAt     DateTime
+}
+
+model User {
+  id        String   @id
+  email     String   @unique
+  password  String
+  active    Boolean
+  roles     UserRole[]
+}
+
+model Role {
+  id          String @id
+  name        String @unique
+  permissions RolePermission[]
+}
+
+model UserRole {
+  userId String
+  roleId String
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+}

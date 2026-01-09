@@ -1,5 +1,5 @@
-import { DomainEventPublisher } from '../../application/services/DomainEventPublisher';
-import { DomainEvent } from '../../domain/events/DomainEvent';
+import { DomainEventPublisher } from 'src/shared';
+import { DomainEvent } from 'src/shared';
 
 export class NoopDomainEventPublisher implements DomainEventPublisher {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

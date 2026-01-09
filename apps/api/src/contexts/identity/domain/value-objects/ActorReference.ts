@@ -1,5 +1,10 @@
 export type ActorType = 'professional' | 'patient' | 'organization';
 
+/**
+ * ```typescript
+ * export type ActorType = 'professional' | 'patient' | 'organization';
+ * ```
+ */
 export class ActorReference {
   private constructor(
     public readonly actorId: string,

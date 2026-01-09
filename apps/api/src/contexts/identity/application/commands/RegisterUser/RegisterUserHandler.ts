@@ -1,12 +1,15 @@
+import { randomUUID } from 'crypto';
+
+import { DomainEventPublisher } from 'src/shared';
+
 import { User } from '../../../domain/aggregates/User';
 import { UserAlreadyExistsError } from '../../../domain/errors/DomainErrors';
 import { Email } from '../../../domain/value-objects/Email';
 import { UserId } from '../../../domain/value-objects/UserId';
 import { UserRepository } from '../../../domain/repositories/UserRepository';
 import { PasswordPolicy } from '../../../domain/services/PasswordPolicy';
-import { DomainEventPublisher } from '../../services/DomainEventPublisher';
+
 import { RegisterUserCommand } from './RegisterUserCommand';
-import { randomUUID } from 'crypto';
 
 export class RegisterUserHandler {
   constructor(

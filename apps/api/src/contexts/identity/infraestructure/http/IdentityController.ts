@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+
 import { AuthenticateUserHandler } from '../../application/commands/AuthenticateUser/AuthenticateUserHandler';
 import { AuthenticateUserCommand } from '../../application/commands/AuthenticateUser/AuthenticateUserCommand';
 import { RegisterUserHandler } from '../../application/commands/RegisterUser/RegisterUserHandler';

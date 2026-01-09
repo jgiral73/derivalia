@@ -1,13 +1,15 @@
-import {
-  UserNotFoundError,
-  RoleNotFoundError,
-} from '../../../domain/errors/DomainErrors';
+import { DomainEventPublisher } from 'src/shared';
+
 import { RoleRepository } from '../../../domain/repositories/RoleRepository';
 import { UserRepository } from '../../../domain/repositories/UserRepository';
 import { ActorReference } from '../../../domain/value-objects/ActorReference';
 import { RoleName } from '../../../domain/value-objects/RoleName';
 import { UserId } from '../../../domain/value-objects/UserId';
-import { DomainEventPublisher } from '../../services/DomainEventPublisher';
+import {
+  UserNotFoundError,
+  RoleNotFoundError,
+} from '../../../domain/errors/DomainErrors';
+
 import { LinkUserToActorCommand } from './LinkUserToActorCommand';
 
 export class LinkUserToActorHandler {

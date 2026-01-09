@@ -1,7 +1,9 @@
-import { UserNotFoundError } from '../../../domain/errors/DomainErrors';
+import { DomainEventPublisher } from 'src/shared';
+
 import { UserRepository } from '../../../domain/repositories/UserRepository';
 import { UserId } from '../../../domain/value-objects/UserId';
-import { DomainEventPublisher } from '../../services/DomainEventPublisher';
+import { UserNotFoundError } from '../../../domain/errors/DomainErrors';
+
 import { ArchiveAccountCommand } from './ArchiveAccountCommand';
 
 export class ArchiveAccountHandler {

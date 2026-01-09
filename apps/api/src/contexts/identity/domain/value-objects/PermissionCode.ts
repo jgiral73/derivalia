@@ -1,6 +1,6 @@
 import { InvalidPermissionCodeError } from '../errors/DomainErrors';
 
-const PERMISSION_REGEX = /^[a-z][a-z0-9_.-]*$/;
+const PERMISSION_REGEX = /^[a-zA-Z][a-zA-Z0-9_.-]*$/;
 
 export class PermissionCode {
   private constructor(public readonly value: string) {}

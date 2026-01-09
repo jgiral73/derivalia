@@ -1,11 +1,4 @@
-export class DomainError extends Error {
-  constructor(
-    message: string,
-    public readonly code: string,
-  ) {
-    super(message);
-  }
-}
+import { DomainError } from 'src/shared';
 
 export class InvalidEmailError extends DomainError {
   constructor(value: string) {

@@ -1,7 +1,9 @@
+import { DomainEventPublisher } from 'src/shared';
+
 import { UserNotFoundError } from '../../../domain/errors/DomainErrors';
 import { UserRepository } from '../../../domain/repositories/UserRepository';
 import { UserId } from '../../../domain/value-objects/UserId';
-import { DomainEventPublisher } from '../../services/DomainEventPublisher';
+
 import { DisableAccountCommand } from './DisableAccountCommand';
 
 export class DisableAccountHandler {

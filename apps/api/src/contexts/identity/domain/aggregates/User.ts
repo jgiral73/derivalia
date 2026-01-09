@@ -1,4 +1,5 @@
-import { AggregateRoot } from './AggregateRoot';
+import { AggregateRoot } from 'src/shared/AggregateRoot';
+
 import { Role } from '../entities/Role';
 import { ActorReference } from '../value-objects/ActorReference';
 import { Email } from '../value-objects/Email';
@@ -28,7 +29,7 @@ export class User extends AggregateRoot {
   private actorLinks: ActorReference[];
   private state: UserState;
 
-  private constructor(
+  public constructor(
     public readonly id: UserId,
     public readonly email: Email,
     private passwordHash: PasswordHash,
@@ -43,15 +44,13 @@ export class User extends AggregateRoot {
   }
 
   static register(id: UserId, email: Email, passwordHash: PasswordHash): User {
-    const user = new User(
-      id,
-      email,
-      passwordHash,
-      [],
-      [],
-      UserState.Registered,
-    );
+    const roles: Role[] = [];
+    const actorLinks: ActorReference[] = [];
+    const state: UserState = UserState.Registered;
+
+    const user = new User(id, email, passwordHash, roles, actorLinks, state);
     user.addDomainEvent(new UserRegistered(id.value, email.value));
+
     return user;
   }
 

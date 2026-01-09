@@ -1,4 +1,4 @@
-import { DomainEvent } from './DomainEvent';
+import { DomainEvent } from 'src/shared';
 import { ActorType } from '../value-objects/ActorReference';
 
 export class UserLinkedToActor implements DomainEvent {
