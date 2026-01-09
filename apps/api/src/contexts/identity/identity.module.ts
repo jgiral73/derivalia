@@ -1,18 +1,21 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from 'src/shared';
-
-import { IdentityController } from './infraestructure/http/IdentityController';
-import { NodePasswordPolicy } from './infraestructure/services/NodePasswordPolicy';
-import { NoopDomainEventPublisher } from './infraestructure/services/NoopDomainEventPublisher';
-import { PrismaUserRepository } from './infraestructure/repositories/PrismaUserRepository';
-import { PrismaRoleRepository } from './infraestructure/repositories/PrismaRoleRepository';
-import { AuthenticateUserHandler } from './application/commands/AuthenticateUser/AuthenticateUserHandler';
-import { RegisterUserHandler } from './application/commands/RegisterUser/RegisterUserHandler';
-import { LinkUserToActorHandler } from './application/commands/LinkUserToActor/LinkUserToActorHandler';
-import { DomainEventPublisher } from 'src/shared';
-import { PasswordPolicy } from './domain/services/PasswordPolicy';
-import { RoleRepository } from './domain/repositories/RoleRepository';
-import { UserRepository } from './domain/repositories/UserRepository';
+import { DomainEventPublisher, PrismaService } from 'src/shared';
+import { AuthController, IdentityController } from './infraestructure/http';
+import { JwtAuthGuard, JwtService } from './infraestructure/auth';
+import {
+  PrismaRoleRepository,
+  PrismaUserRepository,
+} from './infraestructure/repositories';
+import {
+  NoopDomainEventPublisher,
+  NodePasswordPolicy,
+} from './infraestructure/services';
+import { AuthenticateUserHandler } from './application/commands/AuthenticateUser';
+import { LinkUserToActorHandler } from './application/commands/LinkUserToActor';
+import { LoginUserHandler } from './application/commands/LoginUser';
+import { RegisterUserHandler } from './application/commands/RegisterUser';
+import { RoleRepository, UserRepository } from './domain/repositories';
+import { PasswordPolicy } from './domain/services';
 import {
   DOMAIN_EVENT_PUBLISHER,
   PASSWORD_POLICY,
@@ -21,7 +24,7 @@ import {
 } from './identity.tokens';
 
 @Module({
-  controllers: [IdentityController],
+  controllers: [IdentityController, AuthController],
   providers: [
     PrismaService,
     {
@@ -36,6 +39,8 @@ import {
     },
     { provide: PASSWORD_POLICY, useClass: NodePasswordPolicy },
     { provide: DOMAIN_EVENT_PUBLISHER, useClass: NoopDomainEventPublisher },
+    JwtService,
+    JwtAuthGuard,
     {
       provide: RegisterUserHandler,
       useFactory: (
@@ -44,6 +49,21 @@ import {
         publisher: DomainEventPublisher,
       ) => new RegisterUserHandler(users, policy, publisher),
       inject: [USER_REPOSITORY, PASSWORD_POLICY, DOMAIN_EVENT_PUBLISHER],
+    },
+    {
+      provide: LoginUserHandler,
+      useFactory: (
+        users: UserRepository,
+        policy: PasswordPolicy,
+        jwtService: JwtService,
+        publisher: DomainEventPublisher,
+      ) => new LoginUserHandler(users, policy, jwtService, publisher),
+      inject: [
+        USER_REPOSITORY,
+        PASSWORD_POLICY,
+        JwtService,
+        DOMAIN_EVENT_PUBLISHER,
+      ],
     },
     {
       provide: AuthenticateUserHandler,
@@ -64,5 +84,6 @@ import {
       inject: [USER_REPOSITORY, ROLE_REPOSITORY, DOMAIN_EVENT_PUBLISHER],
     },
   ],
+  exports: [JwtService, JwtAuthGuard],
 })
 export class IdentityModule {}
