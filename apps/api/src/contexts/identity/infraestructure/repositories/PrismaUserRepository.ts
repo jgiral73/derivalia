@@ -1,51 +1,114 @@
-import { PrismaClient } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Prisma, PrismaClient } from '@prisma/client';
 
 import { UserRepository } from '../../domain/repositories/UserRepository';
 import { User } from '../../domain/aggregates/User';
 import { Email } from '../../domain/value-objects/Email';
 import { UserId } from '../../domain/value-objects/UserId';
-import { Role } from '../../domain/entities/Role';
-import { ActorReference } from '../../domain/value-objects/ActorReference';
-import { UserState } from '../../domain/value-objects/UserState';
-import { PasswordHash } from '../../domain/value-objects/PasswordHash';
+import { UserMapper, PrismaUserWithRelations } from '../mappers/UserMapper';
+
+const userInclude: Prisma.UserInclude = {
+  roles: {
+    include: {
+      role: {
+        include: {
+          permissions: {
+            include: {
+              permission: true,
+            },
+          },
+        },
+      },
+    },
+  },
+  actorLinks: true,
+};
 
 export class PrismaUserRepository implements UserRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
   async findByEmail(email: Email): Promise<User | null> {
-    const record = await this.prisma.user.findUnique({ where: { email } });
-    if (!record) return null;
+    const record = await this.prisma.user.findUnique({
+      where: {
+        email: email.value,
+      },
+      include: userInclude,
+    });
 
-    // const { id, passwordHash } = record;
-    const roles: Role[] = [];
-    const actorLinks: ActorReference[] = [];
-    const state: UserState = UserState.Registered;
+    if (!record) {
+      return null;
+    }
 
-    return new User(record.id, record.email, record.passwordHash, roles, actorLinks, state);
+    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
   }
 
   async findById(id: UserId): Promise<User | null> {
-    const record = await this.prisma.user.findUnique({ where: { email } })
-    if (!record) return null;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    const record = await this.prisma.user.findUnique({
+      where: {
+        id: id.value,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      include: userInclude,
+    });
 
-    const email: Email = Email.create(record.email);
-    const passwordHash = PasswordHash.fromHashed(record.passwordHash);
-    const roles: Role[] = [...record.roles];
-    const actorLinks: ActorReference[] = [...record.actorLinks];
-    const state: UserState = record.state;
+    if (!record) {
+      return null;
+    }
 
-    return new User(id, email, passwordHash, roles, actorLinks, state);
+    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
   }
 
   async save(user: User): Promise<void> {
-    await this.prisma.user.create({
-      data: {
-        id: user.id,
-        email: user.email,
-        passwordHash: user.passwordHash,
-        // createdAt: user.createdAt
-      },
+    const data = UserMapper.toPersistence(user);
+
+    await this.prisma.$transaction(async (tx) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      await tx.user.upsert({
+        where: {
+          id: data.user.id,
+        },
+        update: {
+          email: data.user.email,
+          passwordHash: data.user.passwordHash,
+          state: data.user.state,
+        },
+        create: {
+          id: data.user.id,
+          email: data.user.email,
+          passwordHash: data.user.passwordHash,
+          state: data.user.state,
+        },
+      });
+
+      await tx.userRole.deleteMany({
+        where: {
+          userId: data.user.id,
+        },
+      });
+
+      if (data.roleLinks.length > 0) {
+        await tx.userRole.createMany({
+          data: data.roleLinks,
+          skipDuplicates: true,
+        });
+      }
+
+      await tx.userActorLink.deleteMany({
+        where: {
+          userId: data.user.id,
+        },
+      });
+
+      if (data.actorLinks.length > 0) {
+        await tx.userActorLink.createMany({
+          data: data.actorLinks,
+          skipDuplicates: true,
+        });
+      }
     });
-    return Promise.resolve();
   }
 }

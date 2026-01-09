@@ -1,4 +1,5 @@
 import {
+  InvalidUserStateError,
   UserCannotActivateWithoutRoleError,
   UserStateTransitionNotAllowedError,
 } from '../errors/DomainErrors';
@@ -12,6 +13,21 @@ export class UserState {
   static Archived = new UserState('archived');
 
   private constructor(public readonly value: UserStateValue) {}
+
+  static fromValue(value: string): UserState {
+    switch (value) {
+      case 'registered':
+        return UserState.Registered;
+      case 'active':
+        return UserState.Active;
+      case 'disabled':
+        return UserState.Disabled;
+      case 'archived':
+        return UserState.Archived;
+      default:
+        throw new InvalidUserStateError(value);
+    }
+  }
 
   canTransitionTo(next: UserState): boolean {
     const allowed: Record<UserStateValue, UserStateValue[]> = {

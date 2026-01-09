@@ -1,30 +1,71 @@
-model User {
-  id            String   @id
-  email         String   @unique
-  passwordHash  String
-  createdAt     DateTime
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum IdentityUserState {
+  registered
+  active
+  disabled
+  archived
 }
 
 model User {
-  id        String   @id
-  email     String   @unique
-  password  String
-  active    Boolean
-  roles     UserRole[]
+  id            String            @id
+  email         String            @unique
+  passwordHash  String
+  state         IdentityUserState @default(registered)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  roles         UserRole[]
+  actorLinks    UserActorLink[]
 }
 
 model Role {
-  id          String @id
-  name        String @unique
-  permissions RolePermission[]
+  id            String           @id
+  name          String           @unique
+  permissions   RolePermission[]
+  userRoles     UserRole[]
+}
+
+model Permission {
+  id              String            @id
+  code            String            @unique
+  rolePermissions RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
 }
 
 model UserRole {
-  userId String
-  roleId String
+  userId  String
+  roleId  String
 
-  user User @relation(fields: [userId], references: [id])
-  role Role @relation(fields: [roleId], references: [id])
+  user    User @relation(fields: [userId], references: [id])
+  role    Role @relation(fields: [roleId], references: [id])
 
   @@id([userId, roleId])
+}
+
+model UserActorLink {
+  userId    String
+  actorId   String
+  actorType String
+  createdAt DateTime @default(now())
+
+  user      User @relation(fields: [userId], references: [id])
+
+  @@id([userId, actorId, actorType])
+  @@index([actorId, actorType])
 }

@@ -75,6 +75,12 @@ export class UserStateTransitionNotAllowedError extends DomainError {
   }
 }
 
+export class InvalidUserStateError extends DomainError {
+  constructor(value: string) {
+    super(`Invalid user state: ${value}`, 'INVALID_USER_STATE');
+  }
+}
+
 export class UserCannotActivateWithoutRoleError extends DomainError {
   constructor() {
     super(

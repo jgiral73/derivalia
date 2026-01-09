@@ -1,6 +1,6 @@
 You are an AI software engineer working inside a DDD-based healthcare platform.
 
-Your task is to implement the bounded context: **Identity & Access BC**.
+Your task is to implement the bounded context: **Patient BC**.
 
 This BC is responsible for:
 - User identity lifecycle
@@ -29,7 +29,7 @@ You MUST read and respect the following files before writing code:
 
 More detailed info:
 
-- docs/domain-foundation/planificació/pas-a-pas/01 - Identity BC.md
+- docs/domain-foundation/planificació/pas-a-pas/02 - Patient BC.md
 - docs/domain-foundation/bounded-contexts/indentity - Identity & Access Management.md
 - docs/domain-foundation/arquitectura/Identity & Auth/*.md
 
