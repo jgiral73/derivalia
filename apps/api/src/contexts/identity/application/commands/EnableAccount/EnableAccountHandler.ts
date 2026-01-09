@@ -1,10 +1,10 @@
 import { DomainEventPublisher } from 'src/shared';
+import { UserNotFoundError } from '../../../domain/errors';
+import { UserRepository } from '../../../domain/repositories';
+import { UserId } from '../../../domain/value-objects';
+import { EnableAccountCommand } from '.';
 
-import { UserNotFoundError } from '../../../domain/errors/DomainErrors';
-import { UserRepository } from '../../../domain/repositories/UserRepository';
-import { UserId } from '../../../domain/value-objects/UserId';
 
-import { EnableAccountCommand } from './EnableAccountCommand';
 
 export class EnableAccountHandler {
   constructor(

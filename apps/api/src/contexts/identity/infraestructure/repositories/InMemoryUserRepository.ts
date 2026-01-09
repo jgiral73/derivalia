@@ -1,7 +1,6 @@
-import { User } from '../../domain/aggregates/User';
-import { UserRepository } from '../../domain/repositories/UserRepository';
-import { Email } from '../../domain/value-objects/Email';
-import { UserId } from '../../domain/value-objects/UserId';
+import { User } from '../../domain/aggregates';
+import { UserRepository } from '../../domain/repositories';
+import { Email, UserId } from '../../domain/value-objects';
 
 export class InMemoryUserRepository implements UserRepository {
   private readonly usersById = new Map<string, User>();

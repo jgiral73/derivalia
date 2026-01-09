@@ -1,10 +1,10 @@
 import { DomainEventPublisher } from 'src/shared';
+import { UserRepository } from '../../../domain/repositories';
+import { UserId } from '../../../domain/value-objects';
+import { UserNotFoundError } from '../../../domain/errors';
+import { ArchiveAccountCommand } from '.';
 
-import { UserRepository } from '../../../domain/repositories/UserRepository';
-import { UserId } from '../../../domain/value-objects/UserId';
-import { UserNotFoundError } from '../../../domain/errors/DomainErrors';
 
-import { ArchiveAccountCommand } from './ArchiveAccountCommand';
 
 export class ArchiveAccountHandler {
   constructor(

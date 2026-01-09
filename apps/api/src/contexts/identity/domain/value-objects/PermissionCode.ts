@@ -1,4 +1,4 @@
-import { InvalidPermissionCodeError } from '../errors/DomainErrors';
+import { InvalidPermissionCodeError } from '../errors';
 
 const PERMISSION_REGEX = /^[a-zA-Z][a-zA-Z0-9_.-]*$/;
 

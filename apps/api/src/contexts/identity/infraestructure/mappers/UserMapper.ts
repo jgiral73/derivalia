@@ -3,20 +3,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { IdentityUserState, Prisma } from '@prisma/client';
-
-import { User } from '../../domain/aggregates/User';
-import { Role } from '../../domain/entities/Role';
+import { User } from '../../domain/aggregates';
+import { Role } from '../../domain/entities';
 import {
   ActorReference,
   ActorType,
-} from '../../domain/value-objects/ActorReference';
-import { Email } from '../../domain/value-objects/Email';
-import { PasswordHash } from '../../domain/value-objects/PasswordHash';
-import { PermissionCode } from '../../domain/value-objects/PermissionCode';
-import { PermissionSet } from '../../domain/value-objects/PermissionSet';
-import { RoleName } from '../../domain/value-objects/RoleName';
-import { UserId } from '../../domain/value-objects/UserId';
-import { UserState } from '../../domain/value-objects/UserState';
+  Email,
+  PasswordHash,
+  PermissionCode,
+  PermissionSet,
+  RoleName,
+  UserId,
+  UserState,
+} from '../../domain/value-objects';
 
 export type PrismaUserWithRelations = Prisma.UserGetPayload<{
   include: {

@@ -1,11 +1,11 @@
 import { DomainEventPublisher } from 'src/shared';
+import { InvalidCredentialsError } from '../../../domain/errors';
+import { Email } from '../../../domain/value-objects';
+import { UserRepository } from '../../../domain/repositories';
+import { PasswordPolicy } from '../../../domain/services';
+import { AuthenticateUserCommand } from '.';
 
-import { InvalidCredentialsError } from '../../../domain/errors/DomainErrors';
-import { Email } from '../../../domain/value-objects/Email';
-import { UserRepository } from '../../../domain/repositories/UserRepository';
-import { PasswordPolicy } from '../../../domain/services/PasswordPolicy';
 
-import { AuthenticateUserCommand } from './AuthenticateUserCommand';
 
 export class AuthenticateUserHandler {
   constructor(

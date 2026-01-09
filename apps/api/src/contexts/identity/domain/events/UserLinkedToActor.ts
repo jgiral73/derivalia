@@ -1,5 +1,5 @@
 import { DomainEvent } from 'src/shared';
-import { ActorType } from '../value-objects/ActorReference';
+import { ActorType } from '../value-objects';
 
 export class UserLinkedToActor implements DomainEvent {
   readonly eventName = 'UserLinkedToActor';

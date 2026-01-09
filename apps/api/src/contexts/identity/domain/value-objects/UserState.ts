@@ -2,7 +2,7 @@ import {
   InvalidUserStateError,
   UserCannotActivateWithoutRoleError,
   UserStateTransitionNotAllowedError,
-} from '../errors/DomainErrors';
+} from '../errors';
 
 export type UserStateValue = 'registered' | 'active' | 'disabled' | 'archived';
 

@@ -1,4 +1,4 @@
-import { InvalidRoleNameError } from '../errors/DomainErrors';
+import { InvalidRoleNameError } from '../errors';
 
 export class RoleName {
   private constructor(public readonly value: string) {}

@@ -1,15 +1,8 @@
 import { DomainEventPublisher } from 'src/shared';
-
-import { RoleRepository } from '../../../domain/repositories/RoleRepository';
-import { UserRepository } from '../../../domain/repositories/UserRepository';
-import { RoleName } from '../../../domain/value-objects/RoleName';
-import { UserId } from '../../../domain/value-objects/UserId';
-import {
-  RoleNotFoundError,
-  UserNotFoundError,
-} from '../../../domain/errors/DomainErrors';
-
-import { AssignRoleToUserCommand } from './AssignRoleToUserCommand';
+import { RoleNotFoundError, UserNotFoundError } from '../../../domain/errors';
+import { RoleRepository, UserRepository } from '../../../domain/repositories';
+import { RoleName, UserId } from '../../../domain/value-objects';
+import { AssignRoleToUserCommand } from '.';
 
 export class AssignRoleToUserHandler {
   constructor(

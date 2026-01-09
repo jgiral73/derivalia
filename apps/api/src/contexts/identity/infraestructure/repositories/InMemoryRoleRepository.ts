@@ -1,6 +1,6 @@
-import { Role } from '../../domain/entities/Role';
-import { RoleRepository } from '../../domain/repositories/RoleRepository';
-import { RoleName } from '../../domain/value-objects/RoleName';
+import { Role } from '../../domain/entities';
+import { RoleRepository } from '../../domain/repositories';
+import { RoleName } from '../../domain/value-objects';
 
 export class InMemoryRoleRepository implements RoleRepository {
   private readonly rolesById = new Map<string, Role>();

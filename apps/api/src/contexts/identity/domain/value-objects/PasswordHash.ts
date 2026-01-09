@@ -1,4 +1,4 @@
-import { InvalidPasswordHashError } from '../errors/DomainErrors';
+import { InvalidPasswordHashError } from '../errors';
 
 export class PasswordHash {
   private constructor(public readonly value: string) {}

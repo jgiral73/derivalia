@@ -1,4 +1,4 @@
-import { PasswordHash } from '../value-objects/PasswordHash';
+import { PasswordHash } from '../value-objects';
 
 export interface PasswordPolicy {
   hash(plainText: string): Promise<PasswordHash>;

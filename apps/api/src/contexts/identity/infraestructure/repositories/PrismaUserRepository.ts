@@ -3,12 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Prisma, PrismaClient } from '@prisma/client';
+import { UserRepository } from '../../domain/repositories';
+import { User } from '../../domain/aggregates';
+import { Email, UserId } from '../../domain/value-objects';
+import { UserMapper, PrismaUserWithRelations } from '../mappers';
 
-import { UserRepository } from '../../domain/repositories/UserRepository';
-import { User } from '../../domain/aggregates/User';
-import { Email } from '../../domain/value-objects/Email';
-import { UserId } from '../../domain/value-objects/UserId';
-import { UserMapper, PrismaUserWithRelations } from '../mappers/UserMapper';
 
 const userInclude: Prisma.UserInclude = {
   roles: {

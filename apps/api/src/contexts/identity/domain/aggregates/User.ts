@@ -1,28 +1,25 @@
 import { AggregateRoot } from 'src/shared/AggregateRoot';
-
-import { Role } from '../entities/Role';
-import { ActorReference } from '../value-objects/ActorReference';
-import { Email } from '../value-objects/Email';
-import { PasswordHash } from '../value-objects/PasswordHash';
-import { UserId } from '../value-objects/UserId';
-import { UserState } from '../value-objects/UserState';
+import {
+  AccountArchived,
+  AccountDisabled,
+  AccountEnabled,
+  RoleAssigned,
+  UserAuthenticated,
+  UserLinkedToActor,
+  UserRegistered,
+} from '../events';
+import { Role } from '../entities';
 import {
   ActorAlreadyLinkedError,
   RoleAlreadyAssignedError,
-  UserAlreadyArchivedError,
   UserAlreadyActiveError,
+  UserAlreadyArchivedError,
   UserAlreadyDisabledError,
-  UserMustBeDisabledToArchiveError,
   UserArchivedError,
   UserDisabledError,
-} from '../errors/DomainErrors';
-import { AccountArchived } from '../events/AccountArchived';
-import { AccountDisabled } from '../events/AccountDisabled';
-import { AccountEnabled } from '../events/AccountEnabled';
-import { RoleAssigned } from '../events/RoleAssigned';
-import { UserAuthenticated } from '../events/UserAuthenticated';
-import { UserLinkedToActor } from '../events/UserLinkedToActor';
-import { UserRegistered } from '../events/UserRegistered';
+  UserMustBeDisabledToArchiveError,
+} from '../errors';
+import { ActorReference, Email, PasswordHash, UserId, UserState } from '../value-objects';
 
 export class User extends AggregateRoot {
   private roles: Role[];

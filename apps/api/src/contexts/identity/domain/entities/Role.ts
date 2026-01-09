@@ -1,5 +1,4 @@
-import { PermissionSet } from '../value-objects/PermissionSet';
-import { RoleName } from '../value-objects/RoleName';
+import { PermissionSet, RoleName } from '../value-objects';
 
 export class Role {
   constructor(

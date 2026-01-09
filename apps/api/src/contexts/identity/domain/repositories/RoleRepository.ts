@@ -1,5 +1,5 @@
-import { Role } from '../entities/Role';
-import { RoleName } from '../value-objects/RoleName';
+import { Role } from '../entities';
+import { RoleName } from '../value-objects';
 
 export interface RoleRepository {
   findByName(name: RoleName): Promise<Role | null>;

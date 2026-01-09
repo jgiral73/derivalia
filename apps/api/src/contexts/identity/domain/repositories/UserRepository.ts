@@ -1,6 +1,5 @@
-import { Email } from '../value-objects/Email';
-import { User } from '../aggregates/User';
-import { UserId } from '../value-objects/UserId';
+import { Email, UserId } from '../value-objects';
+import { User } from '../aggregates';
 
 export interface UserRepository {
   findByEmail(email: Email): Promise<User | null>;

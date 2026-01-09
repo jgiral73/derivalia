@@ -1,4 +1,4 @@
-import { InvalidEmailError } from '../errors/DomainErrors';
+import { InvalidEmailError } from '../errors';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

@@ -1,4 +1,4 @@
-import { InvalidUserIdError } from '../errors/DomainErrors';
+import { InvalidUserIdError } from '../errors';
 
 export class UserId {
   private constructor(public readonly value: string) {}

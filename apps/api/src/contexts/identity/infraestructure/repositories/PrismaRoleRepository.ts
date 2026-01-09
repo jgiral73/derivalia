@@ -3,12 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Prisma, PrismaClient } from '@prisma/client';
+import { Role } from '../../domain/entities';
+import { RoleRepository } from '../../domain/repositories';
+import { PermissionCode, PermissionSet, RoleName } from '../../domain/value-objects';
 
-import { Role } from '../../domain/entities/Role';
-import { RoleRepository } from '../../domain/repositories/RoleRepository';
-import { PermissionCode } from '../../domain/value-objects/PermissionCode';
-import { PermissionSet } from '../../domain/value-objects/PermissionSet';
-import { RoleName } from '../../domain/value-objects/RoleName';
 
 const roleInclude: Prisma.RoleInclude = {
   permissions: {

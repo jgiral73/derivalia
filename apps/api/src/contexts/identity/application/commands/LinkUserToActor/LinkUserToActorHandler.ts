@@ -1,16 +1,8 @@
 import { DomainEventPublisher } from 'src/shared';
-
-import { RoleRepository } from '../../../domain/repositories/RoleRepository';
-import { UserRepository } from '../../../domain/repositories/UserRepository';
-import { ActorReference } from '../../../domain/value-objects/ActorReference';
-import { RoleName } from '../../../domain/value-objects/RoleName';
-import { UserId } from '../../../domain/value-objects/UserId';
-import {
-  UserNotFoundError,
-  RoleNotFoundError,
-} from '../../../domain/errors/DomainErrors';
-
-import { LinkUserToActorCommand } from './LinkUserToActorCommand';
+import { RoleNotFoundError, UserNotFoundError } from '../../../domain/errors';
+import { RoleRepository, UserRepository } from '../../../domain/repositories';
+import { ActorReference, RoleName, UserId } from '../../../domain/value-objects';
+import { LinkUserToActorCommand } from '.';
 
 export class LinkUserToActorHandler {
   constructor(

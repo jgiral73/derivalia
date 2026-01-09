@@ -1,4 +1,4 @@
-import { ActorType } from '../../../domain/value-objects/ActorReference';
+import { ActorType } from '../../../domain/value-objects';
 
 export class LinkUserToActorRequestDto {
   userId!: string;

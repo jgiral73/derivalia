@@ -1,6 +1,6 @@
 import { pbkdf2, randomBytes, timingSafeEqual } from 'crypto';
-import { PasswordPolicy } from '../../domain/services/PasswordPolicy';
-import { PasswordHash } from '../../domain/value-objects/PasswordHash';
+import { PasswordPolicy } from '../../domain/services';
+import { PasswordHash } from '../../domain/value-objects';
 
 const ITERATIONS = 120000;
 const KEY_LENGTH = 64;

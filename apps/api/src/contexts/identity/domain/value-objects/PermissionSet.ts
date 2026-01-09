@@ -1,4 +1,4 @@
-import { PermissionCode } from './PermissionCode';
+import { PermissionCode } from '.';
 
 export class PermissionSet {
   private readonly permissions: Map<string, PermissionCode>;
