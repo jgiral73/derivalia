@@ -173,6 +173,26 @@ Exemple humà:
 
 <br />
 
+## [Conveni de permisos (read/write/remove + archive)](#)
+
+### Capabilities base
+
+Per l'API i la UX fem servir aquest conveni:
+
+* `read` = `GET`
+* `write` = `POST` (create) + `PUT`/`PATCH` (update/modify)
+* `remove` = `DELETE`
+
+Per al BC Patient, els permisos basics son:
+
+* `patient.read`
+* `patient.write`
+
+### Archive vs delete
+
+Quan s'invoca `archive` (ex: `patients.archive`), **no s'elimina** el registre. Es marca com
+arxivat amb una data d'auditoria `archivedAt`.
+
 ## [Com NO s’ha de fer (anti-patterns)](#)
 
 - ❌ Mostrar botons desactivats sense explicació
@@ -268,3 +288,5 @@ Aquest document és el pont crític entre:
 * UX
 
 Si aquest pont es trenca, el producte perd coherència.
+
+
