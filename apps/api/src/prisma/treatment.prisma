@@ -1,0 +1,19 @@
+enum TreatmentStatus {
+  active
+  closed
+}
+
+model Treatment {
+  id             String          @id
+  patientId      String
+  professionalId String
+  organizationId String?
+  goal           String
+  status         TreatmentStatus @default(active)
+  startAt        DateTime
+  endAt          DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([patientId, professionalId, status])
+}

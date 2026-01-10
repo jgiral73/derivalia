@@ -378,6 +378,44 @@ Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen s
     - creates with valid range
     - rejects invalid range
 
+## contexts/treatment/application/commands/CloseTreatment
+
+- Carpeta: `apps/api/src/contexts/treatment/application/commands/CloseTreatment`
+- `CloseTreatmentHandler.spec.ts`
+  - Casos:
+    - throws when treatment is missing
+    - closes and publishes events
+
+## contexts/treatment/application/commands/StartTreatment
+
+- Carpeta: `apps/api/src/contexts/treatment/application/commands/StartTreatment`
+- `StartTreatmentHandler.spec.ts`
+  - Casos:
+    - returns existing treatment when active already exists
+    - saves and publishes when starting new
+
+## contexts/treatment/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/treatment/domain/aggregates`
+- `Treatment.spec.ts`
+  - Casos:
+    - starts and emits TreatmentStarted
+    - closes and emits TreatmentClosed
+    - rejects closing twice
+
+## contexts/treatment/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/treatment/domain/value-objects`
+- `TreatmentGoal.spec.ts`
+  - Casos:
+    - creates with valid goal
+    - rejects empty goal
+- `TreatmentPeriod.spec.ts`
+  - Casos:
+    - starts now and is active
+    - closes and sets endAt
+    - rejects invalid close
+
 ## shared/domain/value-objects
 
 - Carpeta: `apps/api/src/shared/domain/value-objects`
