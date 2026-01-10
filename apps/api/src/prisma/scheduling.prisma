@@ -1,0 +1,44 @@
+enum AppointmentStatus {
+  scheduled
+  cancelled
+  rescheduled
+}
+
+enum AppointmentType {
+  visit
+  follow_up
+  assessment
+  admin
+}
+
+enum SlotType {
+  availability
+  external_block
+}
+
+model Appointment {
+  id             String           @id
+  professionalId String
+  patientId      String?
+  organizationId String?
+  treatmentId    String?
+  startAt        DateTime
+  endAt          DateTime
+  status         AppointmentStatus
+  type           AppointmentType
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([professionalId, startAt])
+}
+
+model SchedulingSlot {
+  id             String   @id
+  professionalId String
+  type           SlotType
+  startAt        DateTime
+  endAt          DateTime
+  createdAt      DateTime @default(now())
+
+  @@index([professionalId, startAt])
+}

@@ -7,7 +7,7 @@ Perfecte. **Seguim amb el següent pas natural** després del domini i dels flow
 Això és el que **realment farà servir el producte**.
 Baixem de l’arquitectura a l’ús real.
 
----
+<br />
 
 # 🎯 Objectiu del flow
 
@@ -19,11 +19,11 @@ Convertir:
 
 Sense:
 
-* formularis llargs d’entrada
-* bloquejar l’acció clínica
-* perdre el context del pacient
+* ❌ formularis llargs d’entrada
+* ❌ bloquejar l’acció clínica
+* ❌ perdre el context del pacient
 
----
+<br />
 
 # 1️⃣ Escenari inicial
 
@@ -41,7 +41,7 @@ Sense:
 * crea `Invitation`
 * envia enllaç únic (email / WhatsApp / SMS futur)
 
----
+<br />
 
 # 2️⃣ Entrada al sistema (no usuari)
 
@@ -60,7 +60,7 @@ Sense:
 
 📌 **No demanem registre encara**
 
----
+<br />
 
 # 3️⃣ Acceptar invitació (estat BASIC)
 
@@ -83,7 +83,7 @@ Sistema:
   * `COMMENT`
   * `UPLOAD_REPORT`
 
----
+<br />
 
 # 4️⃣ Primera sessió (BASIC MODE)
 
@@ -111,7 +111,7 @@ Mostra:
 * cerca global
 * billing
 
----
+<br />
 
 # 5️⃣ Nudges UX (no bloquejants)
 
@@ -129,7 +129,7 @@ En punts clau apareixen **nudges**:
 Botó:
 👉 Completar perfil (opcional)
 
----
+<br />
 
 # 6️⃣ Onboarding progressiu (modal)
 
@@ -144,7 +144,7 @@ Botó:
 * informes formals
 * firma clínica
 
----
+<br />
 
 ### Step 2 — Identitat professional
 
@@ -156,7 +156,7 @@ Botó:
 * sessions
 * historial complet
 
----
+<br />
 
 ### Step 3 — Activació total
 
@@ -171,7 +171,7 @@ onboardingState = PROFESSIONAL_COMPLETED
 
 > “Compte professional activat”
 
----
+<br />
 
 # 7️⃣ Conversió silenciosa (clau comercial)
 
@@ -187,7 +187,7 @@ L’usuari:
 
 > *formalitzar una relació ja existent*
 
----
+<br />
 
 # 8️⃣ Estados + Guards (tècnic)
 
@@ -202,7 +202,7 @@ User {
 }
 ```
 
----
+<br />
 
 ### Capability Matrix
 
@@ -214,7 +214,7 @@ User {
 | Access patients    | ❌     | ✅         |
 | Billing            | ❌     | ✅         |
 
----
+<br />
 
 # 9️⃣ Error cases (reals)
 
@@ -227,7 +227,7 @@ Pantalla:
 CTA:
 👉 Sol·licitar nova invitació
 
----
+<br />
 
 ### Email diferent
 
@@ -238,7 +238,7 @@ Opcions:
 * continuar (canvi explícit)
 * cancel·lar
 
----
+<br />
 
 # 10️⃣ Per què aquest flow és fort
 
@@ -251,7 +251,7 @@ Opcions:
 Això **no és un onboarding**,
 és **una captació natural**.
 
----
+<br />
 
 # ⏭️ Següent pas (encara més baix nivell)
 

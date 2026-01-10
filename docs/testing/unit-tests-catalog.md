@@ -322,6 +322,62 @@ Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen s
     - normalizes specialty
     - rejects empty specialty
 
+## contexts/scheduling/application/commands/CancelAppointment
+
+- Carpeta: `apps/api/src/contexts/scheduling/application/commands/CancelAppointment`
+- `CancelAppointmentHandler.spec.ts`
+  - Casos:
+    - throws when appointment is missing
+    - cancels and publishes events
+
+## contexts/scheduling/application/commands/CreateAvailability
+
+- Carpeta: `apps/api/src/contexts/scheduling/application/commands/CreateAvailability`
+- `CreateAvailabilityHandler.spec.ts`
+  - Casos:
+    - creates slot and saves
+
+## contexts/scheduling/application/commands/RescheduleAppointment
+
+- Carpeta: `apps/api/src/contexts/scheduling/application/commands/RescheduleAppointment`
+- `RescheduleAppointmentHandler.spec.ts`
+  - Casos:
+    - throws when appointment is missing
+    - reschedules and publishes events
+
+## contexts/scheduling/application/commands/ScheduleAppointment
+
+- Carpeta: `apps/api/src/contexts/scheduling/application/commands/ScheduleAppointment`
+- `ScheduleAppointmentHandler.spec.ts`
+  - Casos:
+    - rejects when consent is missing
+    - saves and publishes on success
+
+## contexts/scheduling/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/scheduling/domain/aggregates`
+- `Appointment.spec.ts`
+  - Casos:
+    - schedules and emits AppointmentScheduled
+    - cancels and emits AppointmentCancelled
+    - reschedules and emits AppointmentRescheduled
+
+## contexts/scheduling/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/scheduling/domain/value-objects`
+- `AppointmentStatus.spec.ts`
+  - Casos:
+    - allows scheduled to cancelled
+    - rejects cancelled to scheduled
+- `SlotType.spec.ts`
+  - Casos:
+    - parses availability type
+    - rejects invalid type
+- `TimeSlot.spec.ts`
+  - Casos:
+    - creates with valid range
+    - rejects invalid range
+
 ## shared/domain/value-objects
 
 - Carpeta: `apps/api/src/shared/domain/value-objects`

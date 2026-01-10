@@ -7,6 +7,7 @@ import { ConsentModule } from './contexts/consent/consent.module';
 import { IdentityModule } from './contexts/identity/identity.module';
 import { PatientModule } from './contexts/patient/patient.module';
 import { ProfessionalModule } from './contexts/professional/professional.module';
+import { SchedulingModule } from './contexts/scheduling/scheduling.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ProfessionalModule } from './contexts/professional/professional.module'
     IdentityModule,
     PatientModule,
     ProfessionalModule,
+    SchedulingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
