@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import {
   ArchivePatientCommand,
   ArchivePatientHandler,
@@ -21,10 +21,16 @@ import {
   InvitePatientRequestDto,
   RegisterPatientUserRequestDto,
 } from './dtos';
+import { USER_REPOSITORY } from '../../../identity/identity.tokens';
+import { UserNotFoundError } from '../../../identity/domain/errors';
+import { type UserRepository } from '../../../identity/domain/repositories';
+import { UserId } from '../../../identity/domain/value-objects';
 
 @Controller('patients')
 export class PatientController {
   constructor(
+    @Inject(USER_REPOSITORY)
+    private readonly users: UserRepository,
     private readonly createPatient: CreatePatientHandler,
     private readonly invitePatient: InvitePatientHandler,
     private readonly registerPatientUser: RegisterPatientUserHandler,
@@ -58,6 +64,11 @@ export class PatientController {
 
   @Post('register-user')
   async registerUser(@Body() body: RegisterPatientUserRequestDto) {
+    const user = await this.users.findById(UserId.fromString(body.userId));
+    if (!user) {
+      throw new UserNotFoundError();
+    }
+
     const command = new RegisterPatientUserCommand(body.patientId, body.userId);
     await this.registerPatientUser.execute(command);
     return { status: 'ok' };

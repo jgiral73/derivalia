@@ -11,8 +11,10 @@ import { PatientController } from './infraestructure/http';
 import { PrismaPatientRepository } from './infraestructure/repositories';
 import { NoopDomainEventPublisher } from './infraestructure/services';
 import { DOMAIN_EVENT_PUBLISHER, PATIENT_REPOSITORY } from './patient.tokens';
+import { IdentityModule } from '../identity/identity.module';
 
 @Module({
+  imports: [IdentityModule],
   controllers: [PatientController],
   providers: [
     PrismaService,

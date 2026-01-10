@@ -84,6 +84,6 @@ import {
       inject: [USER_REPOSITORY, ROLE_REPOSITORY, DOMAIN_EVENT_PUBLISHER],
     },
   ],
-  exports: [JwtService, JwtAuthGuard],
+  exports: [JwtService, JwtAuthGuard, USER_REPOSITORY],
 })
 export class IdentityModule {}
