@@ -1,0 +1,83 @@
+import { AssignRoleToUserHandler } from './AssignRoleToUserHandler';
+import { AssignRoleToUserCommand } from './AssignRoleToUserCommand';
+import { RoleNotFoundError, UserNotFoundError } from '../../../domain/errors';
+import { RoleRepository, UserRepository } from '../../../domain/repositories';
+import { DomainEventPublisher } from 'src/shared';
+import { User } from '../../../domain/aggregates';
+import { Role } from '../../../domain/entities';
+import {
+  Email,
+  PasswordHash,
+  PermissionCode,
+  PermissionSet,
+  RoleName,
+  UserId,
+} from '../../../domain/value-objects';
+
+const buildUser = () =>
+  User.register(
+    UserId.fromString('user-1'),
+    Email.create('user@derivalia.com'),
+    PasswordHash.fromHashed('hashed'),
+  );
+
+const buildRole = () =>
+  new Role(
+    'role-1',
+    RoleName.create('PROFESSIONAL'),
+    new PermissionSet([PermissionCode.create('patient.create')]),
+  );
+
+const buildDeps = () => {
+  const users: UserRepository = {
+    findByEmail: jest.fn(),
+    findById: jest.fn(),
+    save: jest.fn(),
+  };
+  const roles: RoleRepository = {
+    findByName: jest.fn(),
+  };
+  const publisher: DomainEventPublisher = {
+    publish: jest.fn(async () => undefined),
+  };
+
+  return { users, roles, publisher };
+};
+
+describe('AssignRoleToUserHandler', () => {
+  it('throws when user is missing', async () => {
+    const { users, roles, publisher } = buildDeps();
+    (users.findById as jest.Mock).mockResolvedValue(null);
+
+    const handler = new AssignRoleToUserHandler(users, roles, publisher);
+
+    await expect(
+      handler.execute(new AssignRoleToUserCommand('user-1', 'PROFESSIONAL')),
+    ).rejects.toThrow(UserNotFoundError);
+  });
+
+  it('throws when role is missing', async () => {
+    const { users, roles, publisher } = buildDeps();
+    (users.findById as jest.Mock).mockResolvedValue(buildUser());
+    (roles.findByName as jest.Mock).mockResolvedValue(null);
+
+    const handler = new AssignRoleToUserHandler(users, roles, publisher);
+
+    await expect(
+      handler.execute(new AssignRoleToUserCommand('user-1', 'PROFESSIONAL')),
+    ).rejects.toThrow(RoleNotFoundError);
+  });
+
+  it('saves and publishes on success', async () => {
+    const { users, roles, publisher } = buildDeps();
+    (users.findById as jest.Mock).mockResolvedValue(buildUser());
+    (roles.findByName as jest.Mock).mockResolvedValue(buildRole());
+
+    const handler = new AssignRoleToUserHandler(users, roles, publisher);
+
+    await handler.execute(new AssignRoleToUserCommand('user-1', 'PROFESSIONAL'));
+
+    expect(users.save).toHaveBeenCalledTimes(1);
+    expect(publisher.publish).toHaveBeenCalledTimes(1);
+  });
+});

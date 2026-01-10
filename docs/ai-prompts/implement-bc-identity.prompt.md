@@ -64,7 +64,7 @@ DOMAIN RULES (NON-NEGOTIABLE)
 COMMANDS OWNED BY THIS BC
 ────────────────────────────────────────
 Implement ONLY the commands defined for Identity in:
-→ docs/domain-commands.md
+- docs/domain-commands.md
 
 Examples:
 - RegisterUser
@@ -87,17 +87,14 @@ Emit ONLY events defined in the documentation, such as:
 Events are immutable and contain only relevant data.
 
 ────────────────────────────────────────
-ARCHITECTURE CONSTRAINTS
-────────────────────────────────────────
-- TypeScript
-- Hexagonal architecture:
-  - domain/
-  - application/
-  - infrastructure/
-- Aggregates must protect invariants
-- No anemic models
-- No direct DB access outside repositories
-- Use explicit domain errors, not generic exceptions
+
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+UNIT TESTS
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+- Add unit tests for domain and application layers
+- Place tests under apps/api/src using *.spec.ts
+- Use Jest + ts-jest
 
 ────────────────────────────────────────
 EXPECTED OUTPUT
@@ -109,10 +106,13 @@ EXPECTED OUTPUT
    - Value Objects
 3. Commands and Events mapping
 4. Folder structure proposal
-5. Code generation in this order:
-   - Domain layer
-   - Application layer
-   - Infrastructure layer
+
+6. Unit tests (domain + application)
 
 If something is unclear, ask BEFORE writing code.
 If something is explicitly defined in docs, do NOT reinterpret it.
+TESTING DOCUMENTATION
+- Follow the patterns in docs/testing/unit-tests-guio.md
+- Register and detail new unit tests in docs/testing/unit-tests-catalog.md
+
+

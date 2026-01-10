@@ -34,6 +34,8 @@ Rules you MUST follow:
 - Respect aggregate boundaries and invariants
 - Use TypeScript
 - Follow hexagonal architecture (domain / application / infrastructure)
+- Add unit tests for domain and application layers
+- Use Jest + ts-jest and place tests under apps/api/src with *.spec.ts
 
 Output format:
 - Start with a brief summary of the BC responsibility
@@ -41,3 +43,9 @@ Output format:
 - List commands and events
 - Then generate the folder structure
 - Then generate the code step by step
+- Then generate unit tests (domain + application)
+TESTING DOCUMENTATION
+- Follow the patterns in docs/testing/unit-tests-guio.md
+- Register and detail new unit tests in docs/testing/unit-tests-catalog.md
+
+

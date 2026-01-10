@@ -81,17 +81,14 @@ Emit ONLY events defined in the documentation, such as:
 Events are immutable and contain only relevant data.
 
 ----------------------------------------
-ARCHITECTURE CONSTRAINTS
+
+
 ----------------------------------------
-- TypeScript
-- Hexagonal architecture:
-  - domain/
-  - application/
-  - infrastructure/
-- Aggregates must protect invariants
-- No anemic models
-- No direct DB access outside repositories
-- Use explicit domain errors, not generic exceptions
+UNIT TESTS
+----------------------------------------
+- Add unit tests for domain and application layers
+- Place tests under apps/api/src using *.spec.ts
+- Use Jest + ts-jest
 
 ----------------------------------------
 EXPECTED OUTPUT
@@ -103,10 +100,8 @@ EXPECTED OUTPUT
    - Value Objects
 3. Commands and Events mapping
 4. Folder structure proposal
-5. Code generation in this order:
-   - Domain layer
-   - Application layer
-   - Infrastructure layer
+
+6. Unit tests (domain + application)
 
 - Crear un arxiu `.prisma` per a cada BC dins de la carpeta `apps/api/src/prisma`. Per exemple, pel BC `patient` hi ha d'haver un arxiu `patient.prisma`.
 
@@ -114,3 +109,8 @@ EXPECTED OUTPUT
 
 If something is unclear, ask BEFORE writing code.
 If something is explicitly defined in docs, do NOT reinterpret it.
+TESTING DOCUMENTATION
+- Follow the patterns in docs/testing/unit-tests-guio.md
+- Register and detail new unit tests in docs/testing/unit-tests-catalog.md
+
+
