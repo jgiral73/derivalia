@@ -13,7 +13,8 @@ npx prisma migrate dev
 Canvi ràpid sense migració:
 > Només dev
 ```bash
-npx prisma db push
+cd apps/api
+npx prisma db push --schema src/prisma
 ```
 
 Si dona un error pq no troba la variable d'environment `DATABASE_URL`, podem utilitzar `PowerShell` per passar-li en dues línies, la primera per establir el valor de la variable d'entorn `$dev`.
@@ -21,7 +22,7 @@ Si dona un error pq no troba la variable d'environment `DATABASE_URL`, podem uti
 > Només des de `PowerShell`
 ```bash
 $env:DATABASE_URL="mysql://my_project_admin:my_project_password@80.80.80.80:3306/my_db_dev"
-npx prisma db push
+npx prisma db push --schema src/prisma
 ```
 
 si tot va bé s'obté una resposta com la següent:
