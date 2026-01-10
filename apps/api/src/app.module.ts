@@ -10,6 +10,7 @@ import { ProfessionalModule } from './contexts/professional/professional.module'
 import { SchedulingModule } from './contexts/scheduling/scheduling.module';
 import { TreatmentModule } from './contexts/treatment/treatment.module';
 import { OrganizationModule } from './contexts/organization/organization.module';
+import { CollaborationModule } from './contexts/collaboration/collaboration.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { OrganizationModule } from './contexts/organization/organization.module'
     PatientModule,
     ProfessionalModule,
     OrganizationModule,
+    CollaborationModule,
     SchedulingModule,
     TreatmentModule,
   ],

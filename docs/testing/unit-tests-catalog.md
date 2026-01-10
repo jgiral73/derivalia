@@ -10,6 +10,70 @@ Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen s
 - Carpeta: `apps/api/src/.`
 - `app.controller.spec.ts`
 
+## contexts/collaboration/application/commands/AcceptCollaboration
+
+- Carpeta: `apps/api/src/contexts/collaboration/application/commands/AcceptCollaboration`
+- `AcceptCollaborationHandler.spec.ts`
+  - Casos:
+    - throws when collaboration does not exist
+    - saves and publishes events
+
+## contexts/collaboration/application/commands/EndCollaboration
+
+- Carpeta: `apps/api/src/contexts/collaboration/application/commands/EndCollaboration`
+- `EndCollaborationHandler.spec.ts`
+  - Casos:
+    - throws when collaboration does not exist
+    - saves and publishes events
+
+## contexts/collaboration/application/commands/RejectCollaboration
+
+- Carpeta: `apps/api/src/contexts/collaboration/application/commands/RejectCollaboration`
+- `RejectCollaborationHandler.spec.ts`
+  - Casos:
+    - throws when collaboration does not exist
+    - saves and publishes events
+
+## contexts/collaboration/application/commands/RequestCollaboration
+
+- Carpeta: `apps/api/src/contexts/collaboration/application/commands/RequestCollaboration`
+- `RequestCollaborationHandler.spec.ts`
+  - Casos:
+    - saves and publishes events
+
+## contexts/collaboration/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/collaboration/domain/aggregates`
+- `Collaboration.spec.ts`
+  - Casos:
+    - emits CollaborationRequested on request
+    - emits CollaborationAccepted on accept
+    - emits CollaborationRejected on reject
+    - emits CollaborationEnded on end
+    - rejects collaborator mismatch
+
+## contexts/collaboration/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/collaboration/domain/value-objects`
+- `CollaborationId.spec.ts`
+  - Casos:
+    - rejects empty ids
+    - creates from non-empty string
+- `CollaborationPurpose.spec.ts`
+  - Casos:
+    - rejects empty specialty
+    - creates with trimmed specialty
+- `CollaborationStatus.spec.ts`
+  - Casos:
+    - allows requested to active
+    - allows requested to rejected
+    - allows active to ended
+    - rejects invalid transitions
+- `TimeRange.spec.ts`
+  - Casos:
+    - rejects when end is before start
+    - creates valid range
+
 ## contexts/consent/application/commands/AcceptConformity
 
 - Carpeta: `apps/api/src/contexts/consent/application/commands/AcceptConformity`

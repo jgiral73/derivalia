@@ -1,0 +1,120 @@
+You are an AI software engineer working inside a DDD-based healthcare platform.
+
+Your task is to implement the bounded context: **Collaboration BC (Professional Collaboration)**.
+
+----------------------------------------
+DOCUMENTATION TO READ FIRST
+----------------------------------------
+You MUST read and respect the following files before writing code:
+
+- README.md
+- docs/guia-aterratge.md
+- docs/glossary.md
+- docs/domain-invariants.md
+- docs/domain-commands.md
+- docs/core-domain-bc.md
+- docs/bounded-contexts.md
+- docs/bounded-context-interactions.md
+- docs/api-backend.md
+- docs/permissions-and-ux.md
+- docs/actor-lifecycles.md
+- docs/use-cases-mvp.md
+- docs/architecture-decisions.md
+- docs/architecture-decisions-2.md
+
+More detailed info to follow:
+
+- docs/domain-foundation/planificació/pas-a-pas/08 - Collaboration BC (col·laboració professional–professional).md
+- docs/domain-foundation/bounded-contexts/collaboration - Professional Collaboration (co-atenció clínica).md
+
+----------------------------------------
+BOUNDARY OF THIS BC
+----------------------------------------
+IN SCOPE:
+- Collaboration aggregate (professional-professional with patient context)
+- Collaboration lifecycle states (requested, active, rejected, ended)
+- Collaboration purpose and scope (limited access)
+- Time-bounded collaboration period
+- Emission of collaboration domain events
+
+OUT OF SCOPE (DO NOT IMPLEMENT):
+- Authentication protocols (OAuth, JWT, etc.)
+- UI concerns
+- Consent management (assumed checked elsewhere)
+- Scheduling/agenda
+- Billing and invoicing
+- Clinical record data
+
+----------------------------------------
+DOMAIN RULES (NON-NEGOTIABLE)
+----------------------------------------
+- Collaboration is a standalone aggregate (not inside treatment or patient)
+- Collaboration is time-bounded (no indefinite collaboration by default)
+- Collaboration permissions are limited and explicit (scope)
+- Collaboration BC NEVER queries other BC databases
+
+----------------------------------------
+COMMANDS OWNED BY THIS BC
+----------------------------------------
+Implement ONLY the commands defined for Collaboration in:
+- docs/domain-commands.md
+
+Examples:
+- RequestCollaboration
+- AcceptCollaboration
+- RejectCollaboration
+- EndCollaboration
+
+Each command:
+- Validates invariants
+- Mutates the aggregate
+- Emits one or more domain events
+
+----------------------------------------
+DOMAIN EVENTS EMITTED
+----------------------------------------
+Emit ONLY events defined in the documentation, such as:
+- CollaborationRequested
+- CollaborationAccepted
+- CollaborationRejected
+- CollaborationEnded
+
+Events are immutable and contain only relevant data.
+
+----------------------------------------
+ARCHITECTURE CONSTRAINTS
+----------------------------------------
+- TypeScript
+- Hexagonal architecture:
+  - domain/
+  - application/
+  - infrastructure/
+- Aggregates must protect invariants
+- No anemic models
+- No direct DB access outside repositories
+- Use explicit domain errors, not generic exceptions
+
+----------------------------------------
+EXPECTED OUTPUT
+----------------------------------------
+1. Short explanation of the Collaboration BC responsibility (markdown document with README structure and the filename equals the same name of the BC)
+2. List of:
+   - Aggregates
+   - Entities
+   - Value Objects
+3. Commands and Events mapping
+4. Folder structure proposal
+5. Code generation in this order:
+   - Domain layer
+   - Application layer
+   - Infrastructure layer
+6. Unit tests (domain + application)
+
+Crear un arxiu `.prisma` per a cada BC dins de la carpeta `apps/api/src/prisma`. Per exemple, pel BC `collaboration` hi ha d'haver un arxiu `collaboration.prisma`.
+
+TESTING DOCUMENTATION
+- Follow the patterns in docs/testing/unit-tests-guio.md
+- Register and detail new unit tests in docs/testing/unit-tests-catalog.md
+
+If something is unclear, ask BEFORE writing code.
+If something is explicitly defined in docs, do NOT reinterpret it.
