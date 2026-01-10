@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { JwtService } from './JwtService';
 

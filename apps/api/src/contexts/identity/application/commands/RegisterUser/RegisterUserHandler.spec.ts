@@ -13,12 +13,10 @@ const buildDeps = () => {
     save: jest.fn(),
   };
   const passwordPolicy: PasswordPolicy = {
-    // eslint-disable-next-line @typescript-eslint/require-await
     hash: jest.fn(async () => PasswordHash.fromHashed('hashed')),
     verify: jest.fn(),
   };
   const publisher: DomainEventPublisher = {
-    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -47,9 +45,7 @@ describe('RegisterUserHandler', () => {
       new RegisterUserCommand('test@derivalia.com', 'pass'),
     );
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(users.save).toHaveBeenCalledTimes(1);
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

@@ -23,11 +23,9 @@ const buildDeps = () => {
   };
   const passwordPolicy: PasswordPolicy = {
     hash: jest.fn(),
-    // eslint-disable-next-line @typescript-eslint/require-await
     verify: jest.fn(async () => true),
   };
   const publisher: DomainEventPublisher = {
-    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -84,7 +82,6 @@ describe('AuthenticateUserHandler', () => {
       new AuthenticateUserCommand('user@derivalia.com', 'pass'),
     );
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

@@ -12,7 +12,6 @@ const buildDeps = () => {
     findByEmail: jest.fn(),
   };
   const publisher: DomainEventPublisher = {
-    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -39,9 +38,7 @@ describe('InviteProfessionalHandler', () => {
 
     await handler.execute(new InviteProfessionalCommand('pro@example.com'));
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(professionals.save).toHaveBeenCalledTimes(1);
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

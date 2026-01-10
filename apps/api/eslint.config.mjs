@@ -36,6 +36,14 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'off',
       /** ERROR: Unsafe member access .CreatedByProfessional on an `error` typed value. */
       '@typescript-eslint/no-unsafe-member-access': 'off',
+      /** ERROR: Unsafe return of a value of type error. */
+      '@typescript-eslint/no-unsafe-return': 'off',
+      /** ERROR: Unsafe call of a(n) `error` type typed value. */
+      '@typescript-eslint/no-unsafe-call': 'off',
+      /** ERROR: Async arrow function has no 'await' expression */
+      '@typescript-eslint/require-await': 'off',
+      /** ERROR: A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object. */
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
 );

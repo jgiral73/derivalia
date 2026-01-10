@@ -21,8 +21,7 @@ describe('ArchivePatientHandler', () => {
       findByProfessional: jest.fn(),
     };
     const publisher: DomainEventPublisher = {
-      // eslint-disable-next-line @typescript-eslint/require-await
-      publish: jest.fn(async () => undefined),
+        publish: jest.fn(async () => undefined),
     };
 
     (patients.findById as jest.Mock).mockResolvedValue(null);
@@ -41,8 +40,7 @@ describe('ArchivePatientHandler', () => {
       findByProfessional: jest.fn(),
     };
     const publisher: DomainEventPublisher = {
-      // eslint-disable-next-line @typescript-eslint/require-await
-      publish: jest.fn(async () => undefined),
+        publish: jest.fn(async () => undefined),
     };
 
     (patients.findById as jest.Mock).mockResolvedValue(buildPatient());
@@ -51,9 +49,7 @@ describe('ArchivePatientHandler', () => {
 
     await handler.execute(new ArchivePatientCommand('patient-1'));
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(patients.save).toHaveBeenCalledTimes(1);
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

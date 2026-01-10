@@ -1,0 +1,64 @@
+enum ConsentScopeType {
+  patient
+  treatment
+  data_type
+}
+
+enum ConsentPurpose {
+  care
+  billing
+  research
+  legal
+}
+
+enum ConsentDecision {
+  allow
+  deny
+}
+
+enum ConformityType {
+  collaboration
+  treatment
+  data_sharing
+}
+
+enum ConformityStatus {
+  requested
+  accepted
+  rejected
+}
+
+model Consent {
+  id        String           @id
+  patientId String
+  granteeId String
+  scopeType ConsentScopeType
+  scopeRef  String
+  purpose   ConsentPurpose
+  decision  ConsentDecision
+  validFrom DateTime
+  validUntil DateTime?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  conformities ConsentConformity[]
+
+  @@index([patientId])
+  @@index([granteeId])
+  @@index([scopeType, scopeRef])
+}
+
+model ConsentConformity {
+  id          String           @id
+  consentId   String
+  type        ConformityType
+  status      ConformityStatus
+  requestedAt DateTime
+  respondedAt DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  consent Consent @relation(fields: [consentId], references: [id], onDelete: Cascade)
+
+  @@index([consentId])
+}

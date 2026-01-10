@@ -21,7 +21,6 @@ export class PrismaProfessionalRepository implements ProfessionalRepository {
       throw new InvalidProfessionalIdError();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     await this.prisma.professional.upsert({
       where,
       update: {
@@ -48,7 +47,6 @@ export class PrismaProfessionalRepository implements ProfessionalRepository {
   }
 
   async findById(id: ProfessionalId): Promise<Professional | null> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const record = await this.prisma.professional.findUnique({
       where: {
         id: id.value,
@@ -63,7 +61,6 @@ export class PrismaProfessionalRepository implements ProfessionalRepository {
   }
 
   async findByUserId(userId: string): Promise<Professional | null> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const record = await this.prisma.professional.findFirst({
       where: {
         userId,
@@ -78,7 +75,6 @@ export class PrismaProfessionalRepository implements ProfessionalRepository {
   }
 
   async findByEmail(email: string): Promise<Professional | null> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const record = await this.prisma.professional.findUnique({
       where: {
         email,

@@ -131,8 +131,8 @@ Pantalla molt important (legal + confiança):
 * Límit d’accés
 * Consentiment actiu del pacient
 
-✔️ Checkbox obligatori
-✔️ Event d’audit
+- ✔️ Checkbox obligatori
+- ✔️ Event d’audit
 
 ---
 
@@ -146,17 +146,17 @@ Pantalla molt important (legal + confiança):
 * Context mínim del pacient
 * Accions permeses
 
-❌ No accés global
-❌ No historial complet
+- ❌ No accés global
+- ❌ No historial complet
 
 ---
 
 # 🧠 Model mental del professional convidat
 
-✔️ “Sé per què estic aquí”
-✔️ “No estic exposat legalment”
-✔️ “Veig valor immediat”
-✔️ “No m’han fet crear un compte abans d’hora”
+- ✔️ “Sé per què estic aquí”
+- ✔️ “No estic exposat legalment”
+- ✔️ “Veig valor immediat”
+- ✔️ “No m’han fet crear un compte abans d’hora”
 
 ---
 
@@ -190,29 +190,29 @@ Pantalla molt important (legal + confiança):
 
 # ⚠️ Errors típics a evitar
 
-❌ Demanar password massa aviat
-❌ Mostrar dades clíniques abans d’acceptar
-❌ Formularis llargs
-❌ Onboarding genèric
-❌ Obligar a descarregar app abans de veure res
+- ❌ Demanar password massa aviat
+- ❌ Mostrar dades clíniques abans d’acceptar
+- ❌ Formularis llargs
+- ❌ Onboarding genèric
+- ❌ Obligar a descarregar app abans de veure res
 
 ---
 
 # 🧭 Decisió de producte (recomanada)
 
-✔️ Invitació contextual
-✔️ Acceptar abans de registrar-se
-✔️ Magic link
-✔️ Perfil mínim
-✔️ Accés progressiu
+- ✔️ Invitació contextual
+- ✔️ Acceptar abans de registrar-se
+- ✔️ Magic link
+- ✔️ Perfil mínim
+- ✔️ Accés progressiu
 
 ---
 
 ## Següent pas natural
 
 Ara sí, amb aquest context clar, opcions:
-1️⃣ **Model DDD detallat de Consent + Invitation**
-2️⃣ **UX equivalent per pacient convidat**
-3️⃣ **Esquema legal-responsabilitats (qui pot fer què)**
+- 1️⃣ **Model DDD detallat de Consent + Invitation**
+- 2️⃣ **UX equivalent per pacient convidat**
+- 3️⃣ **Esquema legal-responsabilitats (qui pot fer què)**
 
 Digues quin i **seguim** 🚀

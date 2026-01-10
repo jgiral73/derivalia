@@ -23,7 +23,6 @@ export class ProfessionalMapper {
     const specialtyValues = Array.isArray(record.specialties)
       ? record.specialties
       : [];
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const specialties = specialtyValues
       .filter((value): value is string => typeof value === 'string')
       .map((specialty) => Specialty.create(specialty));

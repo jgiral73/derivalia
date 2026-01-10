@@ -10,6 +10,98 @@ Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen s
 - Carpeta: `apps/api/src/.`
 - `app.controller.spec.ts`
 
+## contexts/consent/application/commands/AcceptConformity
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/AcceptConformity`
+- `AcceptConformityHandler.spec.ts`
+  - Casos:
+    - throws when consent is missing
+    - accepts conformity and publishes events
+
+## contexts/consent/application/commands/GrantConsent
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/GrantConsent`
+- `GrantConsentHandler.spec.ts`
+  - Casos:
+    - throws when consent is missing
+    - grants and publishes events
+
+## contexts/consent/application/commands/RejectConformity
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/RejectConformity`
+- `RejectConformityHandler.spec.ts`
+  - Casos:
+    - throws when consent is missing
+    - rejects conformity and publishes events
+
+## contexts/consent/application/commands/RequestConformity
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/RequestConformity`
+- `RequestConformityHandler.spec.ts`
+  - Casos:
+    - throws when consent is missing
+    - requests conformity and publishes events
+
+## contexts/consent/application/commands/RequestConsent
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/RequestConsent`
+- `RequestConsentHandler.spec.ts`
+  - Casos:
+    - saves and publishes events
+
+## contexts/consent/application/commands/RevokeConsent
+
+- Carpeta: `apps/api/src/contexts/consent/application/commands/RevokeConsent`
+- `RevokeConsentHandler.spec.ts`
+  - Casos:
+    - throws when consent is missing
+    - revokes and publishes events
+
+## contexts/consent/application/services
+
+- Carpeta: `apps/api/src/contexts/consent/application/services`
+- `ConsentService.spec.ts`
+  - Casos:
+    - allows when a matching allow consent exists
+    - denies when a matching deny consent exists
+
+## contexts/consent/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/consent/domain/aggregates`
+- `Consent.spec.ts`
+  - Casos:
+    - requests consent and emits ConsentRequested
+    - grants consent and emits ConsentGranted
+    - revokes consent and emits ConsentRevoked
+    - requests conformity and emits ConformityRequested
+    - accepts conformity and emits ConformityAccepted
+    - rejects double decision on conformity
+
+## contexts/consent/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/consent/domain/value-objects`
+- `ConformityStatus.spec.ts`
+  - Casos:
+    - parses requested status
+    - rejects invalid status
+- `ConformityType.spec.ts`
+  - Casos:
+    - creates with valid type
+    - rejects invalid type
+- `ConsentDecision.spec.ts`
+  - Casos:
+    - parses allow decision
+    - rejects invalid decision
+- `ConsentPurpose.spec.ts`
+  - Casos:
+    - creates with valid purpose
+    - rejects invalid purpose
+- `ConsentScope.spec.ts`
+  - Casos:
+    - creates with valid type and ref
+    - rejects invalid type
+    - rejects empty ref
+
 ## contexts/identity/application/commands/ArchiveAccount
 
 - Carpeta: `apps/api/src/contexts/identity/application/commands/ArchiveAccount`

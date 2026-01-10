@@ -1,6 +1,11 @@
 # Prisma
 
-Sincronitzar amb els tipus del projecte:
+Quan apareixen errors del tipus:
+```
+Module '"@prisma/client"' has no exported member '...'. ts(2305)
+```
+
+Cal sincronitzar els canvis amb els tipus del projecte:
 > Els tipus es guarden a [`apps/api/node_modules/.prisma/client/index.d.ts`](../../node_modules/.prisma/client/index.d.ts)
 ```bash
 cd apps/api

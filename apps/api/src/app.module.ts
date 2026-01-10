@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ConsentModule } from './contexts/consent/consent.module';
 import { IdentityModule } from './contexts/identity/identity.module';
 import { PatientModule } from './contexts/patient/patient.module';
 import { ProfessionalModule } from './contexts/professional/professional.module';
@@ -13,6 +14,7 @@ import { ProfessionalModule } from './contexts/professional/professional.module'
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ConsentModule,
     IdentityModule,
     PatientModule,
     ProfessionalModule,
