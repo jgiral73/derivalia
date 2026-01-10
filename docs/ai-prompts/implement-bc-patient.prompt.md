@@ -108,7 +108,9 @@ EXPECTED OUTPUT
    - Application layer
    - Infrastructure layer
 
-Crear un arxiu `.prisma` per a cada BC dins de la carpeta `apps/api/src/prisma`. Per exemple, pel BC `patient` hi ha d'haver un arxiu `patient.prisma`.
+- Crear un arxiu `.prisma` per a cada BC dins de la carpeta `apps/api/src/prisma`. Per exemple, pel BC `patient` hi ha d'haver un arxiu `patient.prisma`.
+
+- Registrar els errors corresponents al domini del BC a l'arxiu compartit `apps/api/src/shared/DomainErrorFilter.ts` a `ERROR_STATUS: Record<string, number>`
 
 If something is unclear, ask BEFORE writing code.
 If something is explicitly defined in docs, do NOT reinterpret it.
