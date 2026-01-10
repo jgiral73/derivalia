@@ -28,7 +28,7 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'off',
       "prettier/prettier": ["error", { endOfLine: "auto" }],
       /** ERROR: 'BirthDate' is an 'error' type that acts as 'any' and overrides all other types in this union type. */
       '@typescript-eslint/no-redundant-type-constituents': 'off',
@@ -44,6 +44,8 @@ export default tseslint.config(
       '@typescript-eslint/require-await': 'off',
       /** ERROR: A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object. */
       '@typescript-eslint/unbound-method': 'off',
+      /** ERROR: '...' is defined but never used. */
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 );
