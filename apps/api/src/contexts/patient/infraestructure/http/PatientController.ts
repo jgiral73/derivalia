@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import {
   ArchivePatientCommand,
   ArchivePatientHandler,
@@ -21,12 +21,14 @@ import {
   InvitePatientRequestDto,
   RegisterPatientUserRequestDto,
 } from './dtos';
+import { JwtAuthGuard } from '../../../identity/infraestructure/auth';
 import { USER_REPOSITORY } from '../../../identity/identity.tokens';
 import { UserNotFoundError } from '../../../identity/domain/errors';
 import { type UserRepository } from '../../../identity/domain/repositories';
 import { UserId } from '../../../identity/domain/value-objects';
 
 @Controller('patients')
+@UseGuards(JwtAuthGuard)
 export class PatientController {
   constructor(
     @Inject(USER_REPOSITORY)
