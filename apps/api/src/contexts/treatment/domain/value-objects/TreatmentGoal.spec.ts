@@ -9,8 +9,6 @@ describe('TreatmentGoal', () => {
   });
 
   it('rejects empty goal', () => {
-    expect(() => TreatmentGoal.create('  ')).toThrow(
-      InvalidTreatmentGoalError,
-    );
+    expect(() => TreatmentGoal.create('  ')).toThrow(InvalidTreatmentGoalError);
   });
 });

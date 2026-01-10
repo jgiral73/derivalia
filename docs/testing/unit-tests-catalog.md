@@ -189,6 +189,59 @@ Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen s
     - rejects invalid transitions
     - requires role to activate
 
+## contexts/organization/application/commands/ActivateOrganization
+
+- Carpeta: `apps/api/src/contexts/organization/application/commands/ActivateOrganization`
+- `ActivateOrganizationHandler.spec.ts`
+  - Casos:
+    - throws when organization does not exist
+    - saves and publishes events
+
+## contexts/organization/application/commands/CreateOrganization
+
+- Carpeta: `apps/api/src/contexts/organization/application/commands/CreateOrganization`
+- `CreateOrganizationHandler.spec.ts`
+  - Casos:
+    - saves and publishes events
+
+## contexts/organization/application/commands/SuspendOrganization
+
+- Carpeta: `apps/api/src/contexts/organization/application/commands/SuspendOrganization`
+- `SuspendOrganizationHandler.spec.ts`
+  - Casos:
+    - throws when organization does not exist
+    - saves and publishes events
+
+## contexts/organization/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/organization/domain/aggregates`
+- `Organization.spec.ts`
+  - Casos:
+    - emits OrganizationCreated on create
+    - emits OrganizationActivated when activating
+    - emits OrganizationSuspended when suspending
+
+## contexts/organization/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/organization/domain/value-objects`
+- `OrganizationId.spec.ts`
+  - Casos:
+    - rejects empty ids
+    - creates from non-empty string
+- `OrganizationName.spec.ts`
+  - Casos:
+    - rejects short names
+    - trims and keeps valid names
+- `OrganizationStatus.spec.ts`
+  - Casos:
+    - allows draft to active
+    - allows active to suspended
+    - rejects invalid transitions
+- `OrganizationType.spec.ts`
+  - Casos:
+    - builds from valid values
+    - rejects invalid values
+
 ## contexts/patient/application/commands/ArchivePatient
 
 - Carpeta: `apps/api/src/contexts/patient/application/commands/ArchivePatient`

@@ -1,4 +1,7 @@
-import { Prisma, TreatmentStatus as PrismaTreatmentStatus } from '@prisma/client';
+import {
+  Prisma,
+  TreatmentStatus as PrismaTreatmentStatus,
+} from '@prisma/client';
 import { Treatment } from '../../domain/aggregates';
 import {
   TreatmentGoal,

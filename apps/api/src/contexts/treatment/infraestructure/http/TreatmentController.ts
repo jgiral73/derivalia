@@ -6,10 +6,7 @@ import {
   StartTreatmentHandler,
 } from '../../application/commands';
 import { JwtAuthGuard } from '../../../identity/infraestructure/auth';
-import {
-  CloseTreatmentRequestDto,
-  StartTreatmentRequestDto,
-} from './dtos';
+import { CloseTreatmentRequestDto, StartTreatmentRequestDto } from './dtos';
 
 @Controller('treatments')
 @UseGuards(JwtAuthGuard)

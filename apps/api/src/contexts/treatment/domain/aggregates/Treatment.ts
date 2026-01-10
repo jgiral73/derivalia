@@ -98,11 +98,7 @@ export class Treatment extends AggregateRoot {
     this.updatedAt = new Date();
 
     this.addDomainEvent(
-      new TreatmentClosed(
-        this.id.value,
-        this.patientId,
-        this.professionalId,
-      ),
+      new TreatmentClosed(this.id.value, this.patientId, this.professionalId),
     );
   }
 
