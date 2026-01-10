@@ -87,3 +87,53 @@ const patient = Patient.create({
   contactInfo,
 });
 ```
+
+## Exemples Postman (consum d'API)
+
+Base URL: `http://localhost:3000`
+
+### Crear pacient
+
+POST `http://localhost:3000/patients`
+
+```json
+{
+  "professionalId": "prof-123",
+  "fullName": "Maria Soler",
+  "birthDate": "1990-05-12",
+  "email": "maria@example.com",
+  "phone": "666555444"
+}
+```
+
+### Enviar invitacio
+
+POST `http://localhost:3000/patients/invite`
+
+```json
+{
+  "patientId": "patient-123",
+  "email": "maria@example.com"
+}
+```
+
+### Registrar usuari del pacient
+
+POST `http://localhost:3000/patients/register-user`
+
+```json
+{
+  "patientId": "patient-123",
+  "userId": "user-123"
+}
+```
+
+### Arxivar pacient
+
+POST `http://localhost:3000/patients/archive`
+
+```json
+{
+  "patientId": "patient-123"
+}
+```

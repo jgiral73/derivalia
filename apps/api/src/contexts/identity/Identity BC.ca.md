@@ -1,4 +1,4 @@
-# Identity & Access BC
+# Identity BC
 
 ## Visio general
 Identity & Access gestiona el cicle de vida de la identitat tecnica d'usuari, l'assignacio de rols i els conjunts de permisos sense assumir logica clinica ni de col.laboracio. Emmet esdeveniments de domini d'identitat i no consulta bases de dades d'altres BCs.
@@ -175,5 +175,55 @@ export class AccountDisabled implements DomainEvent {
   ) {
     this.occurredOn = new Date();
   }
+}
+```
+
+## Exemples Postman (consum d'API)
+
+Base URL: `http://localhost:3000`
+
+### Registrar usuari
+
+POST `http://localhost:3000/identity/register`
+
+```json
+{
+  "email": "go@derivalia.com",
+  "password": "Wow12345!"
+}
+```
+
+### Autenticar usuari (sense token)
+
+POST `http://localhost:3000/auth/authenticate`
+
+```json
+{
+  "email": "go@derivalia.com",
+  "password": "Wow12345!"
+}
+```
+
+### Login (JWT)
+
+POST `http://localhost:3000/auth/login`
+
+```json
+{
+  "email": "go@derivalia.com",
+  "password": "Wow12345!"
+}
+```
+
+### Vincular usuari a actor
+
+POST `http://localhost:3000/identity/link-actor`
+
+```json
+{
+  "userId": "user-123",
+  "actorId": "actor-123",
+  "actorType": "professional",
+  "roleName": "PROFESSIONAL"
 }
 ```

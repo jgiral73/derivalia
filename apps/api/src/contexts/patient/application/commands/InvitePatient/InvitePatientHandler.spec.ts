@@ -21,6 +21,7 @@ describe('InvitePatientHandler', () => {
       findByProfessional: jest.fn(),
     };
     const publisher: DomainEventPublisher = {
+      // eslint-disable-next-line @typescript-eslint/require-await
       publish: jest.fn(async () => undefined),
     };
 
@@ -40,6 +41,7 @@ describe('InvitePatientHandler', () => {
       findByProfessional: jest.fn(),
     };
     const publisher: DomainEventPublisher = {
+      // eslint-disable-next-line @typescript-eslint/require-await
       publish: jest.fn(async () => undefined),
     };
 
@@ -47,9 +49,13 @@ describe('InvitePatientHandler', () => {
 
     const handler = new InvitePatientHandler(patients, publisher);
 
-    await handler.execute(new InvitePatientCommand('patient-1', 'pat@example.com'));
+    await handler.execute(
+      new InvitePatientCommand('patient-1', 'pat@example.com'),
+    );
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(patients.save).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

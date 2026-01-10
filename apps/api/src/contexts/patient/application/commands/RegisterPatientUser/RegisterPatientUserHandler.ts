@@ -1,4 +1,5 @@
 import { DomainEventPublisher } from 'src/shared';
+
 import { PatientNotFoundError } from '../../../domain/errors';
 import { PatientRepository } from '../../../domain/repositories';
 import { PatientId } from '../../../domain/value-objects';

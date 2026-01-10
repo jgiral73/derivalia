@@ -11,6 +11,7 @@ describe('CreatePatientHandler', () => {
       findByProfessional: jest.fn(),
     };
     const publisher: DomainEventPublisher = {
+      // eslint-disable-next-line @typescript-eslint/require-await
       publish: jest.fn(async () => undefined),
     };
 
@@ -20,7 +21,9 @@ describe('CreatePatientHandler', () => {
       new CreatePatientCommand('prof-1', 'Jane Doe', '2000-01-01'),
     );
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(patients.save).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });
