@@ -2,16 +2,9 @@ You are an AI software engineer working inside a DDD-based healthcare platform.
 
 Your task is to implement the bounded context: **Patient BC**.
 
-This BC is responsible for:
-- User identity lifecycle
-- Authentication-independent identity state
-- Roles and permissions assignment
-- Account enable/disable
-- Emitting identity-related domain events
-
-────────────────────────────────────────
+----------------------------------------
 DOCUMENTATION TO READ FIRST
-────────────────────────────────────────
+----------------------------------------
 You MUST read and respect the following files before writing code:
 
 - README.md
@@ -21,74 +14,75 @@ You MUST read and respect the following files before writing code:
 - docs/domain-commands.md
 - docs/core-domain-bc.md
 - docs/bounded-contexts.md
-- docs/bounded-context-map.md
+- docs/bounded-context-interactions.md
+- docs/api-backend.md
 - docs/permissions-and-ux.md
 - docs/actor-lifecycles.md
 - docs/use-cases-mvp.md
 - docs/architecture-decisions.md
+- docs/architecture-decisions-2.md
 
-More detailed info:
+More detailed info to follow:
 
-- docs/domain-foundation/planificació/pas-a-pas/02 - Patient BC.md
-- docs/domain-foundation/bounded-contexts/indentity - Identity & Access Management.md
-- docs/domain-foundation/arquitectura/Identity & Auth/*.md
+- docs/domain-foundation/planificació/pas-a-pas-ara-si/01 - Patient.md
+- docs/domain-foundation/planificació/pas-a-pas/04 - Patient BC (MVP real).md
+- docs/domain-foundation/bounded-contexts/patient.md
 
-────────────────────────────────────────
+----------------------------------------
 BOUNDARY OF THIS BC
-────────────────────────────────────────
+----------------------------------------
 IN SCOPE:
-- User aggregate
-- Identity lifecycle states (registered, active, disabled, archived)
-- Role assignment
-- Permission sets as value objects
-- Emission of identity domain events
+- Patient aggregate
+- Patient identity data (name, birth date, contact info)
+- Patient lifecycle states (created_by_professional, invited, active, archived)
+- Link to user (optional)
+- Emission of patient domain events
 
 OUT OF SCOPE (DO NOT IMPLEMENT):
 - Authentication protocols (OAuth, JWT, etc.)
 - UI concerns
-- Patient data
+- Clinical record data
 - Professional collaboration
 - Consent logic
 - Agenda, billing, onboarding flows
 
-────────────────────────────────────────
+----------------------------------------
 DOMAIN RULES (NON-NEGOTIABLE)
-────────────────────────────────────────
-- A User cannot be active without at least one role
-- A disabled account cannot emit business events
-- Roles are explicit, not booleans
+----------------------------------------
+- A Patient can exist without a User account
 - State transitions must respect actor lifecycle definitions
-- Identity BC NEVER queries other BC databases
+- Patient BC NEVER queries other BC databases
 
-────────────────────────────────────────
+----------------------------------------
 COMMANDS OWNED BY THIS BC
-────────────────────────────────────────
-Implement ONLY the commands defined for Identity in:
-→ docs/domain-commands.md
+----------------------------------------
+Implement ONLY the commands defined for Patient in:
+- docs/domain-commands.md
 
 Examples:
-- RegisterUser
-- AssignRole
-- DisableAccount
+- CreatePatient
+- InvitePatient
+- RegisterPatientUser
+- ArchivePatient
 
 Each command:
 - Validates invariants
 - Mutates the aggregate
 - Emits one or more domain events
 
-────────────────────────────────────────
+----------------------------------------
 DOMAIN EVENTS EMITTED
-────────────────────────────────────────
+----------------------------------------
 Emit ONLY events defined in the documentation, such as:
-- UserRegistered
-- RoleAssigned
-- AccountDisabled
+- PatientCreated
+- PatientUpdated
+- PatientArchived
 
 Events are immutable and contain only relevant data.
 
-────────────────────────────────────────
+----------------------------------------
 ARCHITECTURE CONSTRAINTS
-────────────────────────────────────────
+----------------------------------------
 - TypeScript
 - Hexagonal architecture:
   - domain/
@@ -99,10 +93,10 @@ ARCHITECTURE CONSTRAINTS
 - No direct DB access outside repositories
 - Use explicit domain errors, not generic exceptions
 
-────────────────────────────────────────
+----------------------------------------
 EXPECTED OUTPUT
-────────────────────────────────────────
-1. Short explanation of the Identity BC responsibility (markdown document with README structure and the filename equals the same name of the BC)
+----------------------------------------
+1. Short explanation of the Patient BC responsibility (markdown document with README structure and the filename equals the same name of the BC)
 2. List of:
    - Aggregates
    - Entities
@@ -113,6 +107,8 @@ EXPECTED OUTPUT
    - Domain layer
    - Application layer
    - Infrastructure layer
+
+Crear un arxiu `.prisma` per a cada BC dins de la carpeta `apps/api/src/prisma`. Per exemple, pel BC `patient` hi ha d'haver un arxiu `patient.prisma`.
 
 If something is unclear, ask BEFORE writing code.
 If something is explicitly defined in docs, do NOT reinterpret it.

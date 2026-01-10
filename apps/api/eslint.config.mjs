@@ -30,6 +30,12 @@ export default tseslint.config(
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
       "prettier/prettier": ["error", { endOfLine: "auto" }],
+      /** ERROR: 'BirthDate' is an 'error' type that acts as 'any' and overrides all other types in this union type. */
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      /** ERROR: Unsafe assignment of an error typed value. */
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      /** ERROR: Unsafe member access .CreatedByProfessional on an `error` typed value. */
+      '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
 );

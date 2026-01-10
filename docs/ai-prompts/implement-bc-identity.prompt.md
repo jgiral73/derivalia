@@ -21,7 +21,7 @@ You MUST read and respect the following files before writing code:
 - docs/domain-commands.md
 - docs/core-domain-bc.md
 - docs/bounded-contexts.md
-- docs/bounded-context-map.md
+- docs/bounded-context-interactions.md
 - docs/permissions-and-ux.md
 - docs/actor-lifecycles.md
 - docs/use-cases-mvp.md

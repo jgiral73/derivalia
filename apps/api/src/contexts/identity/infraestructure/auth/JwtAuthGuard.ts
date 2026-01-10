@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { JwtService } from '.';
+import { JwtService } from './JwtService';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {

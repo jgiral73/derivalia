@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -7,7 +6,6 @@ import { UserRepository } from '../../domain/repositories';
 import { User } from '../../domain/aggregates';
 import { Email, UserId } from '../../domain/value-objects';
 import { UserMapper, PrismaUserWithRelations } from '../mappers';
-
 
 const userInclude: Prisma.UserInclude = {
   roles: {
@@ -41,16 +39,16 @@ export class PrismaUserRepository implements UserRepository {
       return null;
     }
 
-    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
+    return UserMapper.toDomain(
+      record as unknown as PrismaUserWithRelations,
+    ) as User;
   }
 
   async findById(id: UserId): Promise<User | null> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     const record = await this.prisma.user.findUnique({
       where: {
         id: id.value,
       },
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       include: userInclude,
     });
 
@@ -58,14 +56,15 @@ export class PrismaUserRepository implements UserRepository {
       return null;
     }
 
-    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
+    return UserMapper.toDomain(
+      record as unknown as PrismaUserWithRelations,
+    ) as User;
   }
 
   async save(user: User): Promise<void> {
     const data = UserMapper.toPersistence(user);
 
     await this.prisma.$transaction(async (tx) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       await tx.user.upsert({
         where: {
           id: data.user.id,

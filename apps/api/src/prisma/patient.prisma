@@ -1,0 +1,21 @@
+enum PatientStatus {
+  created_by_professional
+  invited
+  active
+  archived
+}
+
+model Patient {
+  id                      String        @id
+  fullName                String
+  birthDate               DateTime?
+  email                   String?
+  phone                   String?
+  status                  PatientStatus @default(created_by_professional)
+  createdByProfessionalId String
+  userId                  String?
+  createdAt               DateTime      @default(now())
+  updatedAt               DateTime      @updatedAt
+
+  @@index([createdByProfessionalId])
+}

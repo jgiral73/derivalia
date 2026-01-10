@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IdentityModule } from './contexts/identity/identity.module';
+import { PatientModule } from './contexts/patient/patient.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { IdentityModule } from './contexts/identity/identity.module';
       isGlobal: true,
     }),
     IdentityModule,
+    PatientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
