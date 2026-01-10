@@ -5,170 +5,238 @@
 Aquest document recull tots els tests unitaris creats a l'API. Els tests viuen sota
 `apps/api/src` i segueixen el patro `*.spec.ts`.
 
-## Backend base
+## .
 
-- `apps/api/src/app.controller.spec.ts`
-  - AppController / root
+- Carpeta: `apps/api/src/.`
+- `app.controller.spec.ts`
+
+## contexts/identity/application/commands/ArchiveAccount
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/ArchiveAccount`
+- `ArchiveAccountHandler.spec.ts`
   - Casos:
-    - retorna "Hello World!"
+    - throws when user is missing
+    - saves and publishes on success
 
-## Identity BC
+## contexts/identity/application/commands/AssignRoleToUser
 
-### Domain - Value Objects
-
-- Carpeta: `apps/api/src/contexts/identity/domain/value-objects`
-
-- `Email.spec.ts`
-  - Email
+- Carpeta: `apps/api/src/contexts/identity/application/commands/AssignRoleToUser`
+- `AssignRoleToUserHandler.spec.ts`
   - Casos:
-    - crea email normalitzat
-    - rebutja email invalid
+    - throws when user is missing
+    - throws when role is missing
+    - saves and publishes on success
 
-- `UserState.spec.ts`
-  - UserState
+## contexts/identity/application/commands/AuthenticateUser
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/AuthenticateUser`
+- `AuthenticateUserHandler.spec.ts`
   - Casos:
-    - permet transicions valides
-    - rebutja transicions invalides
-    - exigeix rol per activar
+    - throws on missing user
+    - throws on invalid password
+    - publishes events on success
 
-### Domain - Aggregate
+## contexts/identity/application/commands/DisableAccount
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/DisableAccount`
+- `DisableAccountHandler.spec.ts`
+  - Casos:
+    - throws when user is missing
+    - saves and publishes on success
+
+## contexts/identity/application/commands/EnableAccount
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/EnableAccount`
+- `EnableAccountHandler.spec.ts`
+  - Casos:
+    - throws when user is missing
+    - saves and publishes on success
+
+## contexts/identity/application/commands/LinkUserToActor
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/LinkUserToActor`
+- `LinkUserToActorHandler.spec.ts`
+  - Casos:
+    - throws when user is missing
+    - throws when role is missing
+    - saves and publishes on success
+
+## contexts/identity/application/commands/LoginUser
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/LoginUser`
+- `LoginUserHandler.spec.ts`
+  - Casos:
+    - throws on invalid credentials
+    - returns token on success
+
+## contexts/identity/application/commands/RegisterUser
+
+- Carpeta: `apps/api/src/contexts/identity/application/commands/RegisterUser`
+- `RegisterUserHandler.spec.ts`
+  - Casos:
+    - throws when user already exists
+    - saves user and publishes events
+
+## contexts/identity/domain/aggregates
 
 - Carpeta: `apps/api/src/contexts/identity/domain/aggregates`
-
 - `User.spec.ts`
-  - User aggregate
   - Casos:
-    - registra i emet UserRegistered
-    - assigna rol i activa quan esta registrat
-    - evita assignar el mateix rol dues vegades
-    - requereix disable abans d'archive
-    - link a actor una sola vegada
+    - registers and emits UserRegistered
+    - assigns role and activates when registered
+    - prevents assigning the same role twice
+    - requires disable before archive
+    - links to actor once
 
-### Application - Commands
+## contexts/identity/domain/value-objects
 
-- Carpeta: `apps/api/src/contexts/identity/application/commands`
-
-- `RegisterUser/RegisterUserHandler.spec.ts`
-  - RegisterUserHandler
+- Carpeta: `apps/api/src/contexts/identity/domain/value-objects`
+- `UserState.spec.ts`
   - Casos:
-    - error si l'usuari ja existeix
-    - guarda usuari i publica events
+    - allows valid transitions
+    - rejects invalid transitions
+    - requires role to activate
 
-- `AuthenticateUser/AuthenticateUserHandler.spec.ts`
-  - AuthenticateUserHandler
+## contexts/patient/application/commands/ArchivePatient
+
+- Carpeta: `apps/api/src/contexts/patient/application/commands/ArchivePatient`
+- `ArchivePatientHandler.spec.ts`
   - Casos:
-    - error si no hi ha usuari
-    - error si password invalid
-    - publica events en exit
+    - throws when patient is missing
+    - saves and publishes on success
 
-- `LoginUser/LoginUserHandler.spec.ts`
-  - LoginUserHandler
+## contexts/patient/application/commands/CreatePatient
+
+- Carpeta: `apps/api/src/contexts/patient/application/commands/CreatePatient`
+- `CreatePatientHandler.spec.ts`
   - Casos:
-    - error credencials invalides
-    - retorna token en exit
+    - saves patient and publishes events
 
-- `AssignRoleToUser/AssignRoleToUserHandler.spec.ts`
-  - AssignRoleToUserHandler
+## contexts/patient/application/commands/InvitePatient
+
+- Carpeta: `apps/api/src/contexts/patient/application/commands/InvitePatient`
+- `InvitePatientHandler.spec.ts`
   - Casos:
-    - error si usuari no existeix
-    - error si rol no existeix
-    - guarda i publica events
+    - throws when patient is missing
+    - saves and publishes on success
 
-- `LinkUserToActor/LinkUserToActorHandler.spec.ts`
-  - LinkUserToActorHandler
+## contexts/patient/application/commands/RegisterPatientUser
+
+- Carpeta: `apps/api/src/contexts/patient/application/commands/RegisterPatientUser`
+- `RegisterPatientUserHandler.spec.ts`
   - Casos:
-    - error si usuari no existeix
-    - error si rol no existeix
-    - guarda i publica events
+    - throws when patient is missing
+    - saves and publishes on success
 
-- `DisableAccount/DisableAccountHandler.spec.ts`
-  - DisableAccountHandler
-  - Casos:
-    - error si usuari no existeix
-    - guarda i publica events
-
-- `EnableAccount/EnableAccountHandler.spec.ts`
-  - EnableAccountHandler
-  - Casos:
-    - error si usuari no existeix
-    - guarda i publica events
-
-- `ArchiveAccount/ArchiveAccountHandler.spec.ts`
-  - ArchiveAccountHandler
-  - Casos:
-    - error si usuari no existeix
-    - guarda i publica events
-
-## Patient BC
-
-### Domain - Value Objects
-
-- Carpeta: `apps/api/src/contexts/patient/domain/value-objects`
-
-- `PatientName.spec.ts`
-  - PatientName
-  - Casos:
-    - crea nom amb trim
-    - rebutja nom buit
-
-- `BirthDate.spec.ts`
-  - BirthDate
-  - Casos:
-    - crea data valida
-    - rebutja dates futures
-
-- `ContactInfo.spec.ts`
-  - ContactInfo
-  - Casos:
-    - accepta email
-    - accepta phone
-    - rebutja contact info buit
-    - rebutja email invalid
-
-- `PatientStatus.spec.ts`
-  - PatientStatus
-  - Casos:
-    - permet transicions valides
-    - rebutja transicions invalides
-
-### Domain - Aggregate
+## contexts/patient/domain/aggregates
 
 - Carpeta: `apps/api/src/contexts/patient/domain/aggregates`
-
 - `Patient.spec.ts`
-  - Patient aggregate
   - Casos:
-    - crea i emet PatientCreated
-    - invita i passa a invited
-    - registra usuari i passa a active
-    - rebutja registerUser si no esta invited
+    - creates and emits PatientCreated
+    - invites and sets status to invited
+    - registers user and sets status to active
+    - rejects register user when not invited
 
-### Application - Commands
+## contexts/patient/domain/value-objects
 
-- Carpeta: `apps/api/src/contexts/patient/application/commands`
-
-- `CreatePatient/CreatePatientHandler.spec.ts`
-  - CreatePatientHandler
+- Carpeta: `apps/api/src/contexts/patient/domain/value-objects`
+- `BirthDate.spec.ts`
   - Casos:
-    - guarda pacient i publica events
-
-- `InvitePatient/InvitePatientHandler.spec.ts`
-  - InvitePatientHandler
+    - creates a valid birth date
+    - rejects future dates
+- `ContactInfo.spec.ts`
   - Casos:
-    - error si pacient no existeix
-    - guarda i publica events
-
-- `RegisterPatientUser/RegisterPatientUserHandler.spec.ts`
-  - RegisterPatientUserHandler
+    - accepts email
+    - accepts phone
+    - rejects empty contact info
+    - rejects invalid email
+- `PatientName.spec.ts`
   - Casos:
-    - error si pacient no existeix
-    - guarda i publica events
-
-- `ArchivePatient/ArchivePatientHandler.spec.ts`
-  - ArchivePatientHandler
+    - creates a trimmed name
+    - rejects empty name
+- `PatientStatus.spec.ts`
   - Casos:
-    - error si pacient no existeix
-    - guarda i publica events
+    - allows valid transitions
+    - rejects invalid transitions
+
+## contexts/professional/application/commands/CompleteProfessionalOnboarding
+
+- Carpeta: `apps/api/src/contexts/professional/application/commands/CompleteProfessionalOnboarding`
+- `CompleteProfessionalOnboardingHandler.spec.ts`
+  - Casos:
+    - throws when professional is missing
+    - saves and publishes events
+
+## contexts/professional/application/commands/CreateProfessional
+
+- Carpeta: `apps/api/src/contexts/professional/application/commands/CreateProfessional`
+- `CreateProfessionalHandler.spec.ts`
+  - Casos:
+    - throws when professional already exists
+    - saves and publishes events
+
+## contexts/professional/application/commands/InviteProfessional
+
+- Carpeta: `apps/api/src/contexts/professional/application/commands/InviteProfessional`
+- `InviteProfessionalHandler.spec.ts`
+  - Casos:
+    - throws when professional already exists
+    - saves and publishes events
+
+## contexts/professional/application/commands/SuspendProfessional
+
+- Carpeta: `apps/api/src/contexts/professional/application/commands/SuspendProfessional`
+- `SuspendProfessionalHandler.spec.ts`
+  - Casos:
+    - throws when professional is missing
+    - saves and publishes events
+
+## contexts/professional/application/commands/UpdateProfessionalProfile
+
+- Carpeta: `apps/api/src/contexts/professional/application/commands/UpdateProfessionalProfile`
+- `UpdateProfessionalProfileHandler.spec.ts`
+  - Casos:
+    - throws when professional is missing
+    - saves and publishes events
+
+## contexts/professional/domain/aggregates
+
+- Carpeta: `apps/api/src/contexts/professional/domain/aggregates`
+- `Professional.spec.ts`
+  - Casos:
+    - invites and emits ProfessionalInvited
+    - creates and emits ProfessionalCreated
+    - completes onboarding and activates
+    - rejects onboarding when not partial
+
+## contexts/professional/domain/value-objects
+
+- Carpeta: `apps/api/src/contexts/professional/domain/value-objects`
+- `FullName.spec.ts`
+  - Casos:
+    - creates a trimmed name
+    - rejects short name
+- `LicenseNumber.spec.ts`
+  - Casos:
+    - creates normalized license number
+    - rejects invalid license
+- `ProfessionalStatus.spec.ts`
+  - Casos:
+    - allows valid transitions
+    - rejects invalid transitions
+- `Specialty.spec.ts`
+  - Casos:
+    - normalizes specialty
+    - rejects empty specialty
+
+## shared/domain/value-objects
+
+- Carpeta: `apps/api/src/shared/domain/value-objects`
+- `Email.spec.ts`
+  - Casos:
+    - creates a normalized email
+    - rejects invalid email
 
 ## Execucio
 
@@ -177,8 +245,13 @@ cd apps/api
 npm test
 ```
 
-## Possible millora
+## Automatitzacio
 
-Si vols una documentacio sempre sincronitzada, podem generar aquest cataleg
-automaticament a partir dels `describe`/`it` amb un script (p. ex. Node o
-PowerShell) i deixar-lo com a pas del CI.
+Aquest cataleg es genera automaticament amb:
+
+```bash
+cd apps/api
+npm run test:catalog
+```
+
+Es recomana executar-lo en CI i fallar si hi ha canvis pendents.

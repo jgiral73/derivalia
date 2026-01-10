@@ -1,0 +1,20 @@
+enum ProfessionalStatus {
+  invited
+  partial_onboarding
+  active
+  suspended
+}
+
+model Professional {
+  id           String             @id
+  userId       String?
+  email        String?            @unique
+  status       ProfessionalStatus @default(invited)
+  fullName     String?
+  licenseNumber String?
+  specialties  Json
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@index([userId])
+}

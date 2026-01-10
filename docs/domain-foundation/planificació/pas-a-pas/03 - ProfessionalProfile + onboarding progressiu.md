@@ -39,7 +39,7 @@ Aquest pas és **estructural**. Si el fem bé, tot el “progressive unlock”, 
 
 # 1️⃣ Model de domini: ProfessionalProfile
 
-📁 `identity/domain/entities/ProfessionalProfile.ts`
+📁 `professional/domain/entities/ProfessionalProfile.ts`
 
 ```ts
 export enum ProfessionalOnboardingStatus {
@@ -75,7 +75,7 @@ export class ProfessionalProfile {
 
 # 2️⃣ Repositori de domini
 
-📄 `identity/domain/repositories/ProfessionalProfileRepository.ts`
+📄 `professional/domain/repositories/ProfessionalProfileRepository.ts`
 
 ```ts
 import { ProfessionalProfile } from '../entities/ProfessionalProfile'
@@ -113,7 +113,7 @@ npx prisma migrate dev -n professional_profile
 
 # 4️⃣ Infra: PrismaProfessionalProfileRepository
 
-📄 `identity/infrastructure/prisma/PrismaProfessionalProfileRepository.ts`
+📄 `professional/infrastructure/prisma/PrismaProfessionalProfileRepository.ts`
 
 ```ts
 import { PrismaClient } from '@prisma/client'
@@ -173,7 +173,7 @@ Quan un usuari decideix “soc professional”.
 
 ## Command
 
-📄 `identity/application/commands/StartProfessionalOnboarding/StartProfessionalOnboardingCommand.ts`
+📄 `professional/application/commands/StartProfessionalOnboarding/StartProfessionalOnboardingCommand.ts`
 
 ```ts
 export class StartProfessionalOnboardingCommand {
@@ -187,7 +187,7 @@ export class StartProfessionalOnboardingCommand {
 
 ## Handler
 
-📄 `identity/application/commands/StartProfessionalOnboarding/StartProfessionalOnboardingHandler.ts`
+📄 `professional/application/commands/StartProfessionalOnboarding/StartProfessionalOnboardingHandler.ts`
 
 ```ts
 import { randomUUID } from 'crypto'
@@ -229,7 +229,7 @@ export class StartProfessionalOnboardingHandler {
 
 # 6️⃣ HTTP: exposar onboarding
 
-📄 `identity/infrastructure/http/ProfessionalOnboardingController.ts`
+📄 `professional/infrastructure/http/ProfessionalOnboardingController.ts`
 
 ```ts
 import { Controller, Post, Req, UseGuards } from '@nestjs/common'
@@ -258,7 +258,7 @@ export class ProfessionalOnboardingController {
 
 # 7️⃣ Guards basats en onboarding (primer “progressive unlock”)
 
-📄 `identity/infrastructure/auth/ProfessionalCompletedGuard.ts`
+📄 `professional/infrastructure/auth/ProfessionalCompletedGuard.ts`
 
 ```ts
 import { CanActivate, ExecutionContext } from '@nestjs/common'

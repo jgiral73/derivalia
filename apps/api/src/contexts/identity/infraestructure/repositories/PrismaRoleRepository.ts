@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Role } from '../../domain/entities';
 import { RoleRepository } from '../../domain/repositories';
-import { PermissionCode, PermissionSet, RoleName } from '../../domain/value-objects';
-
+import {
+  PermissionCode,
+  PermissionSet,
+  RoleName,
+} from '../../domain/value-objects';
 
 const roleInclude: Prisma.RoleInclude = {
   permissions: {

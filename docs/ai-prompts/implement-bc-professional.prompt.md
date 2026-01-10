@@ -25,7 +25,7 @@ You MUST read and respect the following files before writing code:
 More detailed info to follow:
 
 - docs/domain-foundation/bounded-contexts/professional.md
-- docs/domain-foundation/planificacio/pas-a-pas/03 - ProfessionalProfile + onboarding progressiu.md
+- docs/domain-foundation/planificació/pas-a-pas/03 - ProfessionalProfile + onboarding progressiu.md
 
 ----------------------------------------
 BOUNDARY OF THIS BC

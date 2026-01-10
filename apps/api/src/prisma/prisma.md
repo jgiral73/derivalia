@@ -1,8 +1,10 @@
 # Prisma
 
-Mantindre sincronitzat:
+Sincronitzar amb els tipus del projecte:
+> Els tipus es guarden a [`apps/api/node_modules/.prisma/client/index.d.ts`](../../node_modules/.prisma/client/index.d.ts)
 ```bash
-npx prisma generate
+cd apps/api
+npx prisma generate --config prisma.config.ts
 ```
 
 Canvis normals:

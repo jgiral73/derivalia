@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IdentityModule } from './contexts/identity/identity.module';
 import { PatientModule } from './contexts/patient/patient.module';
+import { ProfessionalModule } from './contexts/professional/professional.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { PatientModule } from './contexts/patient/patient.module';
     }),
     IdentityModule,
     PatientModule,
+    ProfessionalModule,
   ],
   controllers: [AppController],
   providers: [AppService],

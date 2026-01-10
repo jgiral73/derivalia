@@ -4,7 +4,7 @@ export class Role {
   constructor(
     public readonly id: string,
     public readonly name: RoleName,
-    public readonly permissions: PermissionSet[],
+    public readonly permissions: PermissionSet,
   ) {}
 
   equals(other: Role): boolean {
