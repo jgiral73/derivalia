@@ -22,9 +22,11 @@ const buildDeps = () => {
   };
   const passwordPolicy: PasswordPolicy = {
     hash: jest.fn(),
+    // eslint-disable-next-line @typescript-eslint/require-await
     verify: jest.fn(async () => true),
   };
   const publisher: DomainEventPublisher = {
+    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -36,10 +38,16 @@ describe('AuthenticateUserHandler', () => {
     const { users, passwordPolicy, publisher } = buildDeps();
     (users.findByEmail as jest.Mock).mockResolvedValue(null);
 
-    const handler = new AuthenticateUserHandler(users, passwordPolicy, publisher);
+    const handler = new AuthenticateUserHandler(
+      users,
+      passwordPolicy,
+      publisher,
+    );
 
     await expect(
-      handler.execute(new AuthenticateUserCommand('user@derivalia.com', 'pass')),
+      handler.execute(
+        new AuthenticateUserCommand('user@derivalia.com', 'pass'),
+      ),
     ).rejects.toThrow(InvalidCredentialsError);
   });
 
@@ -48,10 +56,16 @@ describe('AuthenticateUserHandler', () => {
     (users.findByEmail as jest.Mock).mockResolvedValue(buildUser());
     (passwordPolicy.verify as jest.Mock).mockResolvedValue(false);
 
-    const handler = new AuthenticateUserHandler(users, passwordPolicy, publisher);
+    const handler = new AuthenticateUserHandler(
+      users,
+      passwordPolicy,
+      publisher,
+    );
 
     await expect(
-      handler.execute(new AuthenticateUserCommand('user@derivalia.com', 'pass')),
+      handler.execute(
+        new AuthenticateUserCommand('user@derivalia.com', 'pass'),
+      ),
     ).rejects.toThrow(InvalidCredentialsError);
   });
 
@@ -59,10 +73,17 @@ describe('AuthenticateUserHandler', () => {
     const { users, passwordPolicy, publisher } = buildDeps();
     (users.findByEmail as jest.Mock).mockResolvedValue(buildUser());
 
-    const handler = new AuthenticateUserHandler(users, passwordPolicy, publisher);
+    const handler = new AuthenticateUserHandler(
+      users,
+      passwordPolicy,
+      publisher,
+    );
 
-    await handler.execute(new AuthenticateUserCommand('user@derivalia.com', 'pass'));
+    await handler.execute(
+      new AuthenticateUserCommand('user@derivalia.com', 'pass'),
+    );
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

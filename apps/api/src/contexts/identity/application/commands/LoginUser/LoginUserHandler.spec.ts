@@ -23,6 +23,7 @@ const buildDeps = () => {
   };
   const passwordPolicy: PasswordPolicy = {
     hash: jest.fn(),
+    // eslint-disable-next-line @typescript-eslint/require-await
     verify: jest.fn(async () => true),
   };
   const jwtService: JwtService = {
@@ -30,6 +31,7 @@ const buildDeps = () => {
     verify: jest.fn(),
   } as unknown as JwtService;
   const publisher: DomainEventPublisher = {
+    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 

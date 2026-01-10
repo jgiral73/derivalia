@@ -36,8 +36,10 @@ const buildDeps = () => {
   };
   const roles: RoleRepository = {
     findByName: jest.fn(),
+    findById: jest.fn(),
   };
   const publisher: DomainEventPublisher = {
+    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -53,7 +55,12 @@ describe('LinkUserToActorHandler', () => {
 
     await expect(
       handler.execute(
-        new LinkUserToActorCommand('user-1', 'actor-1', 'professional', 'PROFESSIONAL'),
+        new LinkUserToActorCommand(
+          'user-1',
+          'actor-1',
+          'professional',
+          'PROFESSIONAL',
+        ),
       ),
     ).rejects.toThrow(UserNotFoundError);
   });
@@ -67,7 +74,12 @@ describe('LinkUserToActorHandler', () => {
 
     await expect(
       handler.execute(
-        new LinkUserToActorCommand('user-1', 'actor-1', 'professional', 'PROFESSIONAL'),
+        new LinkUserToActorCommand(
+          'user-1',
+          'actor-1',
+          'professional',
+          'PROFESSIONAL',
+        ),
       ),
     ).rejects.toThrow(RoleNotFoundError);
   });
@@ -80,10 +92,17 @@ describe('LinkUserToActorHandler', () => {
     const handler = new LinkUserToActorHandler(users, roles, publisher);
 
     await handler.execute(
-      new LinkUserToActorCommand('user-1', 'actor-1', 'professional', 'PROFESSIONAL'),
+      new LinkUserToActorCommand(
+        'user-1',
+        'actor-1',
+        'professional',
+        'PROFESSIONAL',
+      ),
     );
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(users.save).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });

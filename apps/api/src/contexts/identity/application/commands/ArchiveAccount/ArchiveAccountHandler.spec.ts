@@ -23,6 +23,7 @@ const buildDeps = () => {
     save: jest.fn(),
   };
   const publisher: DomainEventPublisher = {
+    // eslint-disable-next-line @typescript-eslint/require-await
     publish: jest.fn(async () => undefined),
   };
 
@@ -49,7 +50,9 @@ describe('ArchiveAccountHandler', () => {
 
     await handler.execute(new ArchiveAccountCommand('user-1'));
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(users.save).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(publisher.publish).toHaveBeenCalledTimes(1);
   });
 });
