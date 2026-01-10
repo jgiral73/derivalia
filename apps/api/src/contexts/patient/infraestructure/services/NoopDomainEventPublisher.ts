@@ -1,5 +1,4 @@
-import { DomainEventPublisher } from 'src/shared';
-import { DomainEvent } from 'src/shared/DomainEvent';
+import { DomainEvent, DomainEventPublisher } from 'src/shared';
 
 export class NoopDomainEventPublisher implements DomainEventPublisher {
   async publish(events: DomainEvent[]): Promise<void> {

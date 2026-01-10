@@ -1,5 +1,4 @@
-import { Email } from '.';
-import { InvalidEmailError } from '../errors';
+import { Email, InvalidEmailError } from './Email';
 
 describe('Email', () => {
   it('creates a normalized email', () => {

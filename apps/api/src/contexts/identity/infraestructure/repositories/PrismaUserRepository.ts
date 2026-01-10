@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Prisma, PrismaClient } from '@prisma/client';
+
+import { Email } from 'src/shared';
+
 import { UserRepository } from '../../domain/repositories';
 import { User } from '../../domain/aggregates';
-import { Email, UserId } from '../../domain/value-objects';
+import { UserId } from '../../domain/value-objects';
 import { UserMapper, PrismaUserWithRelations } from '../mappers';
 
 const userInclude: Prisma.UserInclude = {
@@ -39,9 +39,7 @@ export class PrismaUserRepository implements UserRepository {
       return null;
     }
 
-    return UserMapper.toDomain(
-      record as unknown as PrismaUserWithRelations,
-    ) as User;
+    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
   }
 
   async findById(id: UserId): Promise<User | null> {
@@ -56,9 +54,7 @@ export class PrismaUserRepository implements UserRepository {
       return null;
     }
 
-    return UserMapper.toDomain(
-      record as unknown as PrismaUserWithRelations,
-    ) as User;
+    return UserMapper.toDomain(record as unknown as PrismaUserWithRelations);
   }
 
   async save(user: User): Promise<void> {

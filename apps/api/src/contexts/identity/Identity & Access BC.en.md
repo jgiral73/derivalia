@@ -33,7 +33,7 @@ Out of scope:
 
 ### Value Objects
 - UserId
-- Email
+- Email (shared)
 - PasswordHash
 - RoleName
 - PermissionCode

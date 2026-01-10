@@ -1,4 +1,5 @@
-import { AggregateRoot } from 'src/shared/AggregateRoot';
+import { AggregateRoot, Email } from 'src/shared';
+
 import {
   AccountArchived,
   AccountDisabled,
@@ -19,7 +20,12 @@ import {
   UserDisabledError,
   UserMustBeDisabledToArchiveError,
 } from '../errors';
-import { ActorReference, Email, PasswordHash, UserId, UserState } from '../value-objects';
+import {
+  ActorReference,
+  PasswordHash,
+  UserId,
+  UserState,
+} from '../value-objects';
 
 export class User extends AggregateRoot {
   private roles: Role[];

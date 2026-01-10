@@ -1,5 +1,4 @@
 export * from './ActorReference';
-export * from './Email';
 export * from './PasswordHash';
 export * from './PermissionCode';
 export * from './PermissionSet';

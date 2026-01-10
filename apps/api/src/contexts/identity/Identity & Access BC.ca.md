@@ -105,7 +105,7 @@ Fora d'abast:
 
 ### Objectes de valor
 - UserId
-- Email
+- Email (shared)
 - PasswordHash
 - RoleName
 - PermissionCode

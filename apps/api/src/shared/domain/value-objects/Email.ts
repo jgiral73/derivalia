@@ -1,4 +1,10 @@
-import { InvalidEmailError } from '../errors';
+import { DomainError } from '../DomainError';
+
+export class InvalidEmailError extends DomainError {
+  constructor(value: string) {
+    super(`Invalid email: ${value}`, 'INVALID_EMAIL');
+  }
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

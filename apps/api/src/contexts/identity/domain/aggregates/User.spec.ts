@@ -1,8 +1,9 @@
+import { Email } from 'src/shared';
+
 import { User } from '.';
 import { Role } from '../entities';
 import {
   ActorReference,
-  Email,
   PasswordHash,
   PermissionCode,
   PermissionSet,

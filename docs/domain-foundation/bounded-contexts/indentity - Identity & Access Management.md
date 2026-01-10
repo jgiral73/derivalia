@@ -30,7 +30,7 @@ Inclou:
 ## 📦 Estructura de carpetes (DDD + Hexagonal)
 
 ```txt
-identity-access/
+identity/
 ├── domain/
 │   ├── aggregates/
 │   │   └── User/

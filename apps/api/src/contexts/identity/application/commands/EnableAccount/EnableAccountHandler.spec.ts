@@ -1,12 +1,12 @@
+import { DomainEventPublisher, Email } from 'src/shared';
+
 import { EnableAccountHandler } from './EnableAccountHandler';
 import { EnableAccountCommand } from './EnableAccountCommand';
 import { UserNotFoundError } from '../../../domain/errors';
 import { UserRepository } from '../../../domain/repositories';
-import { DomainEventPublisher } from 'src/shared';
 import { User } from '../../../domain/aggregates';
 import { Role } from '../../../domain/entities';
 import {
-  Email,
   PasswordHash,
   PermissionCode,
   PermissionSet,

@@ -1,4 +1,5 @@
-import { AggregateRoot } from 'src/shared/AggregateRoot';
+import { AggregateRoot } from 'src/shared';
+
 import { PatientArchived, PatientCreated, PatientUpdated } from '../events';
 import {
   PatientAlreadyArchivedError,

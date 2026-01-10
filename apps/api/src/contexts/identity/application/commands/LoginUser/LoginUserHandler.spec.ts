@@ -1,11 +1,12 @@
+import { DomainEventPublisher, Email } from 'src/shared';
+
 import { LoginUserHandler } from './LoginUserHandler';
 import { LoginUserCommand } from './LoginUserCommand';
 import { InvalidCredentialsError } from '../../../domain/errors';
-import { DomainEventPublisher } from 'src/shared';
 import { PasswordPolicy } from '../../../domain/services';
 import { UserRepository } from '../../../domain/repositories';
 import { User } from '../../../domain/aggregates';
-import { Email, PasswordHash, UserId } from '../../../domain/value-objects';
+import { PasswordHash, UserId } from '../../../domain/value-objects';
 import { JwtService } from '../../../infraestructure/auth/JwtService';
 
 const buildUser = () =>

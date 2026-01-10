@@ -1,10 +1,11 @@
+import { DomainEventPublisher, Email } from 'src/shared';
+
 import { ArchiveAccountHandler } from './ArchiveAccountHandler';
 import { ArchiveAccountCommand } from './ArchiveAccountCommand';
 import { UserNotFoundError } from '../../../domain/errors';
 import { UserRepository } from '../../../domain/repositories';
-import { DomainEventPublisher } from 'src/shared';
 import { User } from '../../../domain/aggregates';
-import { Email, PasswordHash, UserId } from '../../../domain/value-objects';
+import { PasswordHash, UserId } from '../../../domain/value-objects';
 
 const buildUser = () => {
   const user = User.register(

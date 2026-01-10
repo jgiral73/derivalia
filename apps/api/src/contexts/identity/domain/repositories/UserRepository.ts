@@ -1,4 +1,6 @@
-import { Email, UserId } from '../value-objects';
+import { Email } from 'src/shared';
+
+import { UserId } from '../value-objects';
 import { User } from '../aggregates';
 
 export interface UserRepository {

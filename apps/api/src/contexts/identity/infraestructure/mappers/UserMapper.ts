@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { IdentityUserState, Prisma } from '@prisma/client';
+
+import { Email } from 'src/shared';
+
 import { User } from '../../domain/aggregates';
 import { Role } from '../../domain/entities';
 import {
   ActorReference,
   ActorType,
-  Email,
   PasswordHash,
   PermissionCode,
   PermissionSet,

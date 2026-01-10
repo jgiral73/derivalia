@@ -1,12 +1,12 @@
+import { DomainEventPublisher, Email } from 'src/shared';
+
 import { AssignRoleToUserHandler } from './AssignRoleToUserHandler';
 import { AssignRoleToUserCommand } from './AssignRoleToUserCommand';
 import { RoleNotFoundError, UserNotFoundError } from '../../../domain/errors';
 import { RoleRepository, UserRepository } from '../../../domain/repositories';
-import { DomainEventPublisher } from 'src/shared';
 import { User } from '../../../domain/aggregates';
 import { Role } from '../../../domain/entities';
 import {
-  Email,
   PasswordHash,
   PermissionCode,
   PermissionSet,
