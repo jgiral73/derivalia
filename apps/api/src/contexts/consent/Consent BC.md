@@ -37,6 +37,38 @@ OUT OF SCOPE:
 - ConformityType
 - ConformityStatus
 
+## Consentiment vs Conformitat
+
+El consentiment expressa una autoritzacio explicita i revocable sobre un scope
+i una finalitat. La conformitat es la materialitzacio formal d'aquesta
+autoritzacio en actes concrets (col.laboracio, tractament o comparticio
+d'informacio) i sempre ha de ser traçable.
+
+## Cicle de vida (Consentiment i Conformitat)
+
+### Consentiment (decisio + temporalitat)
+
+```mermaid
+stateDiagram-v2
+  [*] --> Requested
+  Requested: decision=deny
+  Requested --> Granted: GrantConsent
+  Granted: decision=allow
+  Granted --> Revoked: RevokeConsent
+  Revoked: decision=deny
+```
+
+### Conformitat (sub-entity dins el Consent)
+
+```mermaid
+stateDiagram-v2
+  [*] --> Requested
+  Requested --> Accepted: AcceptConformity
+  Requested --> Rejected: RejectConformity
+  Accepted --> [*]
+  Rejected --> [*]
+```
+
 ## Commands i events
 
 - RequestConsent -> ConsentRequested
