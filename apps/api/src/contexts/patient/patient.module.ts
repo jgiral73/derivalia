@@ -58,5 +58,6 @@ import { IdentityModule } from '../identity/identity.module';
       inject: [PATIENT_REPOSITORY, DOMAIN_EVENT_PUBLISHER],
     },
   ],
+  exports: [PATIENT_REPOSITORY],
 })
 export class PatientModule {}

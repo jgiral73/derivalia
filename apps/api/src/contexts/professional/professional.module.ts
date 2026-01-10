@@ -70,5 +70,6 @@ import { IdentityModule } from '../identity/identity.module';
       inject: [PROFESSIONAL_REPOSITORY, DOMAIN_EVENT_PUBLISHER],
     },
   ],
+  exports: [PROFESSIONAL_REPOSITORY],
 })
 export class ProfessionalModule {}

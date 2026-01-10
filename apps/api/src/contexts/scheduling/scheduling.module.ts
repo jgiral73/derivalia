@@ -12,6 +12,8 @@ import { AvailabilityPolicy } from './domain/services';
 import { ConsentModule } from '../consent/consent.module';
 import { IdentityModule } from '../identity/identity.module';
 import { ConsentService } from '../consent/application/services';
+import { PatientModule } from '../patient/patient.module';
+import { ProfessionalModule } from '../professional/professional.module';
 import { AppointmentController } from './infraestructure/http';
 import { ConsentCheckerAdapter } from './infraestructure/adapters/ConsentCheckerAdapter';
 import {
@@ -27,7 +29,7 @@ import {
 } from './scheduling.tokens';
 
 @Module({
-  imports: [ConsentModule, IdentityModule],
+  imports: [ConsentModule, IdentityModule, PatientModule, ProfessionalModule],
   controllers: [AppointmentController],
   providers: [
     PrismaService,
@@ -90,8 +92,13 @@ import {
         appointments: AppointmentRepository,
         availability: AvailabilityPolicy,
         publisher: DomainEventPublisher,
-      ) => new RescheduleAppointmentHandler(appointments, availability, publisher),
-      inject: [APPOINTMENT_REPOSITORY, AvailabilityPolicy, DOMAIN_EVENT_PUBLISHER],
+      ) =>
+        new RescheduleAppointmentHandler(appointments, availability, publisher),
+      inject: [
+        APPOINTMENT_REPOSITORY,
+        AvailabilityPolicy,
+        DOMAIN_EVENT_PUBLISHER,
+      ],
     },
     {
       provide: CancelAppointmentHandler,
