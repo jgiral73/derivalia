@@ -8,24 +8,24 @@ DOCUMENTATION TO READ FIRST
 You MUST read and respect the following files before writing code:
 
 - README.md
-- docs/guia-aterratge.md
-- docs/glossary.md
-- docs/domain-invariants.md
-- docs/domain-commands.md
-- docs/core-domain-bc.md
-- docs/bounded-contexts.md
-- docs/bounded-context-interactions.md
-- docs/api-backend.md
-- docs/permissions-and-ux.md
-- docs/actor-lifecycles.md
-- docs/use-cases-mvp.md
-- docs/architecture-decisions.md
-- docs/architecture-decisions-2.md
+- docs/overview/getting-started.md
+- docs/overview/glossary.md
+- docs/architecture/domain-invariants.md
+- docs/architecture/domain-commands.md
+- docs/architecture/core-domain-bc.md
+- docs/architecture/bounded-contexts.md
+- docs/architecture/bounded-context-interactions.md
+- docs/architecture/api-backend.md
+- docs/architecture/permissions-and-ux.md
+- docs/architecture/actor-lifecycles.md
+- docs/overview/use-cases-mvp.md
+- docs/architecture/architecture-decisions.md
+- docs/architecture/architecture-decisions-2.md
 
 More detailed info to follow:
 
-- docs/domain-foundation/planificació/pas-a-pas/08 - Collaboration BC (col·laboració professional–professional).md
-- docs/domain-foundation/bounded-contexts/collaboration - Professional Collaboration (co-atenció clínica).md
+- docs/reference/domain-foundation/planificació/pas-a-pas/08 - Collaboration BC (col·laboració professional–professional).md
+- docs/reference/domain-foundation/bounded-contexts/collaboration - Professional Collaboration (co-atenció clínica).md
 
 ----------------------------------------
 BOUNDARY OF THIS BC
@@ -57,7 +57,7 @@ DOMAIN RULES (NON-NEGOTIABLE)
 COMMANDS OWNED BY THIS BC
 ----------------------------------------
 Implement ONLY the commands defined for Collaboration in:
-- docs/domain-commands.md
+- docs/architecture/domain-commands.md
 
 Examples:
 - RequestCollaboration
@@ -118,3 +118,4 @@ TESTING DOCUMENTATION
 
 If something is unclear, ask BEFORE writing code.
 If something is explicitly defined in docs, do NOT reinterpret it.
+

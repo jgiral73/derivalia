@@ -5,17 +5,17 @@ Your task is to implement ONE bounded context only: <BC_NAME>.
 Before writing any code, you MUST:
 1. Read and understand the project documentation:
    - README.md
-   - docs/guia-aterratge.md
-   - docs/glossary.md
-   - docs/domain-invariants.md
-   - docs/domain-commands.md
-   - docs/core-domain-bc.md (to understand priorities)
-   - docs/bounded-contexts.md
-   - docs/bounded-context-interactions.md
-   - docs/permissions-and-ux.md
-   - docs/actor-lifecycles.md
-   - docs/use-cases-mvp.md
-   - docs/architecture-decisions.md
+   - docs/overview/getting-started.md
+   - docs/overview/glossary.md
+   - docs/architecture/domain-invariants.md
+   - docs/architecture/domain-commands.md
+   - docs/architecture/core-domain-bc.md (to understand priorities)
+   - docs/architecture/bounded-contexts.md
+   - docs/architecture/bounded-context-interactions.md
+   - docs/architecture/permissions-and-ux.md
+   - docs/architecture/actor-lifecycles.md
+   - docs/overview/use-cases-mvp.md
+   - docs/architecture/architecture-decisions.md
 
 2. Identify clearly:
    - What belongs to this BC
@@ -47,5 +47,6 @@ Output format:
 TESTING DOCUMENTATION
 - Follow the patterns in docs/testing/unit-tests-guio.md
 - Register and detail new unit tests in docs/testing/unit-tests-catalog.md
+
 
 
