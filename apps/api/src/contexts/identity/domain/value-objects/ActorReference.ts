@@ -7,6 +7,9 @@ export type ActorType = 'professional' | 'patient' | 'organization';
  */
 export class ActorReference {
   private constructor(
+    /** Quan actorType === 'patient' llavors actorId === Patient.id.
+     *  Quan actorType === 'professional' llavors actorId === Professional.id.
+     *  Quan actorType === 'organization' llavors actorId === Organization.id. */
     public readonly actorId: string,
     public readonly actorType: ActorType,
   ) {}

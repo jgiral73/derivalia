@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import {
   AcceptCollaborationCommand,
   AcceptCollaborationHandler,
@@ -10,6 +10,14 @@ import {
   RequestCollaborationHandler,
 } from '../../application/commands';
 import { JwtAuthGuard } from '../../../identity/infraestructure/auth';
+import { PatientNotFoundError } from '../../../patient/domain/errors';
+import type { PatientRepository } from '../../../patient/domain/repositories';
+import { PatientId } from '../../../patient/domain/value-objects';
+import { PATIENT_REPOSITORY } from '../../../patient/patient.tokens';
+import { ProfessionalNotFoundError } from '../../../professional/domain/errors';
+import type { ProfessionalRepository } from '../../../professional/domain/repositories';
+import { ProfessionalId } from '../../../professional/domain/value-objects';
+import { PROFESSIONAL_REPOSITORY } from '../../../professional/professional.tokens';
 import {
   AcceptCollaborationRequestDto,
   EndCollaborationRequestDto,
@@ -25,10 +33,19 @@ export class CollaborationController {
     private readonly acceptCollaboration: AcceptCollaborationHandler,
     private readonly rejectCollaboration: RejectCollaborationHandler,
     private readonly endCollaboration: EndCollaborationHandler,
+    @Inject(PATIENT_REPOSITORY)
+    private readonly patients: PatientRepository,
+    @Inject(PROFESSIONAL_REPOSITORY)
+    private readonly professionals: ProfessionalRepository,
   ) {}
 
   @Post('request')
   async request(@Body() body: RequestCollaborationRequestDto) {
+    await this.ensureProfessionalExists(body.requesterProfessionalId);
+    await this.ensurePatientExists(body.patientId);
+    if (body.collaboratorProfessionalId) {
+      await this.ensureProfessionalExists(body.collaboratorProfessionalId);
+    }
     const command = new RequestCollaborationCommand(
       body.requesterProfessionalId,
       body.patientId,
@@ -51,6 +68,7 @@ export class CollaborationController {
 
   @Post('accept')
   async accept(@Body() body: AcceptCollaborationRequestDto) {
+    await this.ensureProfessionalExists(body.collaboratorProfessionalId);
     const command = new AcceptCollaborationCommand(
       body.collaborationId,
       body.collaboratorProfessionalId,
@@ -61,6 +79,7 @@ export class CollaborationController {
 
   @Post('reject')
   async reject(@Body() body: RejectCollaborationRequestDto) {
+    await this.ensureProfessionalExists(body.collaboratorProfessionalId);
     const command = new RejectCollaborationCommand(
       body.collaborationId,
       body.collaboratorProfessionalId,
@@ -71,11 +90,32 @@ export class CollaborationController {
 
   @Post('end')
   async end(@Body() body: EndCollaborationRequestDto) {
+    if (body.endedByProfessionalId) {
+      await this.ensureProfessionalExists(body.endedByProfessionalId);
+    }
     const command = new EndCollaborationCommand(
       body.collaborationId,
       body.endedByProfessionalId,
     );
     await this.endCollaboration.execute(command);
     return { status: 'ok' };
+  }
+
+  private async ensureProfessionalExists(
+    professionalId: string,
+  ): Promise<void> {
+    const id = ProfessionalId.fromString(professionalId);
+    const professional = await this.professionals.findById(id);
+    if (!professional) {
+      throw new ProfessionalNotFoundError();
+    }
+  }
+
+  private async ensurePatientExists(patientId: string): Promise<void> {
+    const id = PatientId.fromString(patientId);
+    const patient = await this.patients.findById(id);
+    if (!patient) {
+      throw new PatientNotFoundError();
+    }
   }
 }

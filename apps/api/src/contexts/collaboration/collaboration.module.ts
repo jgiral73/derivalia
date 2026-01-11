@@ -15,9 +15,11 @@ import {
   DOMAIN_EVENT_PUBLISHER,
 } from './collaboration.tokens';
 import { IdentityModule } from '../identity/identity.module';
+import { PatientModule } from '../patient/patient.module';
+import { ProfessionalModule } from '../professional/professional.module';
 
 @Module({
-  imports: [IdentityModule],
+  imports: [IdentityModule, PatientModule, ProfessionalModule],
   controllers: [CollaborationController],
   providers: [
     PrismaService,
